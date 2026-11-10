@@ -8,27 +8,10 @@ import { PlaceholderPage } from './pages/PlaceholderPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { AppProvider } from './state/AppContext'
 
-const SPLASH_KEY = 'supplytrust.splash.seen'
-
-function splashAlreadySeen(): boolean {
-  try {
-    return sessionStorage.getItem(SPLASH_KEY) === '1'
-  } catch {
-    return false
-  }
-}
-
 export default function App() {
-  const [showSplash, setShowSplash] = useState(() => !splashAlreadySeen())
-
-  const finishSplash = useCallback(() => {
-    try {
-      sessionStorage.setItem(SPLASH_KEY, '1')
-    } catch {
-      /* storage unavailable */
-    }
-    setShowSplash(false)
-  }, [])
+  // Intro plays on every fresh page load (not on in-app navigation).
+  const [showSplash, setShowSplash] = useState(true)
+  const finishSplash = useCallback(() => setShowSplash(false), [])
 
   return (
     <AppProvider>

@@ -3,45 +3,39 @@ export interface LogoMarkProps {
   animated?: boolean
 }
 
-/** SupplyTrust mark: a shield (trust) wrapped around a shipping box (supply) with a check (approval). */
+/**
+ * SupplyTrust mark: a rounded badge holding an "S" drawn as a supply route
+ * (two stops joined by a path) with a trust check seal.
+ */
 export function LogoMark({ size = 40, animated = false }: LogoMarkProps) {
-  const a = animated ? 'st-draw' : ''
+  const draw = animated ? 'st-draw' : ''
+  const pop = animated ? 'st-pop-node' : ''
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" role="img" aria-label="SupplyTrust logo">
       <defs>
-        <linearGradient id="st-g" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+        <linearGradient id="st-badge" x1="4" y1="2" x2="60" y2="62" gradientUnits="userSpaceOnUse">
           <stop stopColor="#2dd4bf" />
-          <stop offset="1" stopColor="#0f766e" />
+          <stop offset="0.55" stopColor="#0f9488" />
+          <stop offset="1" stopColor="#0a4f52" />
         </linearGradient>
       </defs>
+      <rect className={animated ? 'st-badge-in' : ''} x="3" y="3" width="58" height="58" rx="17" fill="url(#st-badge)" />
+      <rect x="3.75" y="3.75" width="56.5" height="56.5" rx="16.25" stroke="#fff" strokeOpacity="0.25" strokeWidth="1.5" />
       <path
-        className={a}
-        style={{ ['--len' as string]: 190, ['--delay' as string]: '0s' }}
-        d="M32 4 56 13v17c0 15-10 26-24 30C18 56 8 45 8 30V13L32 4Z"
-        fill={animated ? 'none' : 'url(#st-g)'}
-        stroke="url(#st-g)"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      {animated && <path className="st-fill" d="M32 4 56 13v17c0 15-10 26-24 30C18 56 8 45 8 30V13L32 4Z" fill="url(#st-g)" />}
-      <path
-        className={a}
-        style={{ ['--len' as string]: 90, ['--delay' as string]: '0.7s' }}
-        d="M32 20 43 25.5v11L32 42 21 36.5v-11L32 20Zm0 0v11m0 0 11-5.5M32 31l-11-5.5"
+        className={draw}
+        style={{ ['--len' as string]: 110, ['--delay' as string]: '0.5s' }}
+        d="M42 19.5C38.5 14.5 22 14.5 22 25.5C22 36 42 29.5 42 40.5C42 50.5 26 50.5 21.5 44.5"
         stroke="#fff"
-        strokeWidth="2.2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <path
-        className={a}
-        style={{ ['--len' as string]: 30, ['--delay' as string]: '1.3s' }}
-        d="m25 48 5 5 10-11"
-        stroke="#fbbf24"
-        strokeWidth="3.4"
+        strokeWidth="6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+      <circle className={pop} style={{ ['--delay' as string]: '1.3s' }} cx="42" cy="19.5" r="4.2" fill="#fbbf24" stroke="#0a4f52" strokeWidth="2" />
+      <circle className={pop} style={{ ['--delay' as string]: '1.45s' }} cx="21.5" cy="44.5" r="4.2" fill="#fbbf24" stroke="#0a4f52" strokeWidth="2" />
+      <g className={pop} style={{ ['--delay' as string]: '1.7s' }}>
+        <circle cx="50" cy="50" r="11" fill="#fbbf24" stroke="#0a2229" strokeWidth="2.5" />
+        <path d="m44.8 50.2 3.6 3.6 6.2-7" stroke="#0a2229" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
     </svg>
   )
 }
