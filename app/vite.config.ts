@@ -10,5 +10,11 @@ export default defineConfig({
     globals: true,
     setupFiles: './src/test/setup.ts',
     css: false,
+    coverage: {
+      provider: 'v8',
+      // Documented coverage scope: reusable components and pure domain logic.
+      include: ['src/components/**', 'src/lib/**'],
+      exclude: ['src/**/*.test.*'],
+    },
   },
 })

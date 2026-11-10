@@ -39,7 +39,7 @@ export function DashboardPage() {
             <ul className="divide-y divide-slate-100">
               {delayed.map((o) => (
                 <li key={o.orderId} className="flex items-center justify-between gap-2 py-2 text-sm">
-                  <Link to={`/orders/${o.orderId}`} className="font-medium text-brand-700 hover:underline">
+                  <Link to={`/orders/${o.orderId}`} className="whitespace-nowrap font-medium text-brand-700 hover:underline">
                     {o.orderId}
                   </Link>
                   <span className="text-red-700">

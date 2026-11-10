@@ -42,7 +42,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState<string>(() => load(USER_KEY, 'u1'))
   const [toasts, setToasts] = useState<Toast[]>([])
   // The intro plays on every fresh page load and whenever the logo is clicked.
-  const [introVisible, setIntroVisible] = useState(true)
+  // Add ?skipintro to the URL to bypass it (used for automated screenshots).
+  const [introVisible, setIntroVisible] = useState(() => !window.location.search.includes('skipintro'))
   const playIntro = useCallback(() => setIntroVisible(true), [])
   const endIntro = useCallback(() => setIntroVisible(false), [])
 
