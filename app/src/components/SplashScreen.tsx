@@ -49,8 +49,10 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
       </svg>
 
       <div className="relative flex flex-col items-center px-6 text-center">
-        <div className="st-halo rounded-3xl p-5">
-          <LogoMark size={112} animated />
+        <div className="st-halo relative p-3">
+          <span className="st-orbit" aria-hidden />
+          <span className="st-orbit st-orbit-2" aria-hidden />
+          <LogoMark size={150} animated />
         </div>
 
         <h1 className="mt-6 flex text-4xl font-semibold tracking-tight sm:text-5xl" aria-label="SupplyTrust">
@@ -58,7 +60,7 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
             <span
               key={i}
               aria-hidden
-              className={`st-letter ${i >= 6 ? 'text-amber-400' : ''}`}
+              className={`st-letter ${i >= 6 ? 'st-gold-text' : ''}`}
               style={{ animationDelay: `${1.5 + i * 0.06}s` }}
             >
               {ch}

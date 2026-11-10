@@ -50,6 +50,58 @@ body {
     stroke-dashoffset: 0;
   }
 }
+.st-gold-text {
+  background: linear-gradient(100deg, #fff3b0 0%, #fbbf24 35%, #d97706 60%, #fde68a 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: st-shimmer 3.5s ease-in-out infinite;
+}
+@keyframes st-shimmer {
+  50% {
+    background-position: 100% 0;
+  }
+}
+.st-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: st-twinkle 2.2s ease-in-out 2s infinite;
+}
+@keyframes st-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+.st-orbit {
+  position: absolute;
+  inset: -14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-top-color: rgba(253, 230, 138, 0.95);
+  border-right-color: transparent;
+  animation: st-spin 3.2s linear infinite;
+}
+.st-orbit-2 {
+  inset: -26px;
+  border-color: rgba(45, 212, 191, 0.25);
+  border-bottom-color: rgba(94, 234, 212, 0.85);
+  border-top-color: transparent;
+  animation-duration: 5s;
+  animation-direction: reverse;
+}
+@keyframes st-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .st-badge-in {
   transform-box: fill-box;
   transform-origin: center;
