@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { NAV_ITEMS } from '../lib/permissions'
 import { useApp } from '../state/AppContext'
 import { ROLE_LABELS } from '../types'
+import { LogoMark, LogoWordmark } from './Logo'
 import { ToastRegion } from './NotificationToast'
 
 export function AppLayout() {
@@ -18,12 +19,15 @@ export function AppLayout() {
       </a>
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 transform bg-slate-900 text-slate-100 transition-transform lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 transform bg-gradient-to-b from-ink-900 to-ink-950 text-slate-100 transition-transform lg:static lg:translate-x-0 ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex h-16 items-center justify-between px-5">
-          <span className="text-lg font-semibold tracking-tight">SupplyTrust</span>
+          <span className="flex items-center gap-2.5 text-lg">
+            <LogoMark size={30} />
+            <LogoWordmark />
+          </span>
           <button type="button" className="lg:hidden" onClick={() => setOpen(false)} aria-label="Close navigation">
             <X size={20} aria-hidden />
           </button>
@@ -37,8 +41,10 @@ export function AppLayout() {
                   end={n.to === '/'}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `block rounded-lg px-3 py-2 text-sm font-medium ${
-                      isActive ? 'bg-brand-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    `block rounded-lg border-l-4 px-3 py-2 text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'border-amber-400 bg-white/10 text-white'
+                        : 'border-transparent text-teal-100/75 hover:bg-white/5 hover:text-white'
                     }`
                   }
                 >
@@ -52,7 +58,7 @@ export function AppLayout() {
       {open && <div className="fixed inset-0 z-30 bg-black/40 lg:hidden" onClick={() => setOpen(false)} aria-hidden />}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-slate-200 bg-white px-4">
+        <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b-2 border-brand-500/20 bg-white/90 px-4 backdrop-blur">
           <button type="button" className="rounded p-2 hover:bg-slate-100 lg:hidden" onClick={() => setOpen(true)} aria-label="Open navigation">
             <Menu size={20} aria-hidden />
           </button>
