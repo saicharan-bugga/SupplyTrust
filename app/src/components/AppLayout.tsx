@@ -8,7 +8,7 @@ import { LogoMark, LogoWordmark } from './Logo'
 import { ToastRegion } from './NotificationToast'
 
 export function AppLayout() {
-  const { currentUser, data, setCurrentUserId } = useApp()
+  const { currentUser, data, setCurrentUserId, playIntro } = useApp()
   const [open, setOpen] = useState(false)
   const items = NAV_ITEMS.filter((n) => n.roles.includes(currentUser.role))
 
@@ -24,10 +24,19 @@ export function AppLayout() {
         }`}
       >
         <div className="flex h-16 items-center justify-between px-5">
-          <span className="flex items-center gap-2.5 text-lg">
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false)
+              playIntro()
+            }}
+            className="flex items-center gap-2.5 rounded-lg text-lg transition-transform hover:scale-[1.03]"
+            aria-label="SupplyTrust - replay intro animation"
+            title="Replay intro"
+          >
             <LogoMark size={30} />
             <LogoWordmark />
-          </span>
+          </button>
           <button type="button" className="lg:hidden" onClick={() => setOpen(false)} aria-label="Close navigation">
             <X size={20} aria-hidden />
           </button>

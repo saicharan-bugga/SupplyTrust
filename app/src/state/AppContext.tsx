@@ -21,6 +21,9 @@ interface AppContextValue {
   toasts: Toast[]
   notify: (message: string, severity?: Toast['severity']) => void
   dismissToast: (id: number) => void
+  introVisible: boolean
+  playIntro: () => void
+  endIntro: () => void
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
@@ -38,6 +41,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [data, setDataState] = useState<AppData>(() => load(DATA_KEY, sampleData))
   const [userId, setUserId] = useState<string>(() => load(USER_KEY, 'u1'))
   const [toasts, setToasts] = useState<Toast[]>([])
+  // The intro plays on every fresh page load and whenever the logo is clicked.
+  const [introVisible, setIntroVisible] = useState(true)
+  const playIntro = useCallback(() => setIntroVisible(true), [])
+  const endIntro = useCallback(() => setIntroVisible(false), [])
 
   useEffect(() => {
     try {
@@ -88,6 +95,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     toasts,
     notify,
     dismissToast,
+    introVisible,
+    playIntro,
+    endIntro,
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
