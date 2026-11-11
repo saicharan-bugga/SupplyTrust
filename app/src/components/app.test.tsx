@@ -91,11 +91,10 @@ describe('AppLayout', () => {
     expect(screen.queryByRole('link', { name: 'Vendors' })).not.toBeInTheDocument()
   })
 
-  it('replays the intro when the logo is clicked', () => {
+  it('does not turn the sidebar logo into an intro replay button', () => {
     render(<Shell />)
-    expect(screen.queryByRole('dialog', { name: /loading/i })).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: /replay intro/i }))
-    // the intro is rendered by App; here we assert the context flag flipped
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }))
+    expect(screen.queryByRole('button', { name: /replay intro/i })).not.toBeInTheDocument()
   })
 
   it('opens and closes the mobile menu', () => {

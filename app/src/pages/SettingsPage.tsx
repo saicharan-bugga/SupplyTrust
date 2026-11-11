@@ -1,22 +1,25 @@
+import { RotateCcw } from 'lucide-react'
 import { useApp } from '../state/AppContext'
 
 export function SettingsPage() {
   const { resetData, notify } = useApp()
   return (
-    <div className="space-y-4">
-      <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
-      <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-        <h2 className="font-semibold">Demo data</h2>
-        <p className="mt-1 text-sm text-slate-600">Reset all vendors, orders and inspections back to the original sample data.</p>
+    <div className="space-y-5">
+      <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Settings</h1>
+      <section className="st-card st-rise flex flex-wrap items-center justify-between gap-4 p-6">
+        <div>
+          <h2 className="font-semibold text-slate-900">Demo data</h2>
+          <p className="mt-1 max-w-lg text-sm text-slate-500">Reset all vendors, orders and inspections back to the original sample data.</p>
+        </div>
         <button
           type="button"
-          className="mt-3 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"
+          className="st-btn-gold inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm"
           onClick={() => {
             resetData()
             notify('Sample data restored.')
           }}
         >
-          Reset sample data
+          <RotateCcw size={16} aria-hidden /> Reset sample data
         </button>
       </section>
     </div>

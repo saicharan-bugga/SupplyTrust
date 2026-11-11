@@ -23,13 +23,13 @@ export function SearchFilterBar({ query, status, onQueryChange, onStatusChange }
     <div className="flex flex-col gap-3 sm:flex-row">
       <label className="relative flex-1">
         <span className="sr-only">Search orders</span>
-        <Search size={16} aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+        <Search size={16} aria-hidden className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="search"
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
           placeholder="Search by order reference or vendor"
-          className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm"
+          className="w-full rounded-xl border-0 bg-slate-900/5 py-2.5 pl-10 pr-3 text-sm outline-none transition focus:bg-white focus:ring-2 focus:ring-teal-500/40"
         />
       </label>
       <label className="sm:w-56">
@@ -37,7 +37,7 @@ export function SearchFilterBar({ query, status, onQueryChange, onStatusChange }
         <select
           value={status}
           onChange={(e) => onStatusChange(e.target.value as OrderStatus | 'All')}
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm"
+          className="w-full rounded-xl border-0 bg-slate-900/5 px-3 py-2.5 text-sm outline-none transition focus:bg-white focus:ring-2 focus:ring-teal-500/40"
         >
           <option value="All">All statuses</option>
           {STATUS_OPTIONS.map((s) => (

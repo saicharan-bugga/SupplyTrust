@@ -6,36 +6,40 @@ export interface DashboardCardProps {
   hint?: string
   icon?: ReactNode
   tone?: 'default' | 'warning' | 'danger' | 'success'
+  delay?: number
 }
 
-const TONES = {
-  default: 'bg-brand-100 text-brand-700',
-  warning: 'bg-amber-100 text-amber-700',
-  danger: 'bg-rose-100 text-rose-700',
-  success: 'bg-emerald-100 text-emerald-700',
+const ICON = {
+  default: 'from-teal-400 to-teal-700 shadow-teal-600/40',
+  warning: 'from-amber-300 to-amber-600 shadow-amber-500/40',
+  danger: 'from-rose-400 to-rose-600 shadow-rose-500/40',
+  success: 'from-emerald-400 to-emerald-700 shadow-emerald-600/40',
 }
 
-const ACCENT = {
-  default: 'border-t-brand-500',
-  warning: 'border-t-amber-500',
-  danger: 'border-t-rose-500',
-  success: 'border-t-emerald-500',
+const GLOW = {
+  default: 'rgba(20,184,166,0.14)',
+  warning: 'rgba(245,158,11,0.16)',
+  danger: 'rgba(244,63,94,0.13)',
+  success: 'rgba(16,185,129,0.14)',
 }
 
-export function DashboardCard({ title, value, hint, icon, tone = 'default' }: DashboardCardProps) {
+export function DashboardCard({ title, value, hint, icon, tone = 'default', delay = 0 }: DashboardCardProps) {
   return (
     <section
-      className={`rounded-xl border border-t-4 border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md ${ACCENT[tone]}`}
+      className="st-card st-card-hover st-rise relative overflow-hidden p-5"
+      style={{ ['--d' as string]: `${delay}s`, backgroundImage: `radial-gradient(12rem 8rem at 100% 0%, ${GLOW[tone]}, transparent 70%)` }}
       aria-label={title}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-medium text-slate-600">{title}</p>
-          <p className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">{value}</p>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-slate-500">{title}</p>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-slate-900 tabular-nums">{value}</p>
         </div>
-        {icon && <span className={`rounded-lg p-2 ${TONES[tone]}`}>{icon}</span>}
+        {icon && (
+          <span className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-lg ${ICON[tone]}`}>{icon}</span>
+        )}
       </div>
-      {hint && <p className="mt-2 text-xs text-slate-500">{hint}</p>}
+      {hint && <p className="mt-3 text-xs font-medium text-slate-500">{hint}</p>}
     </section>
   )
 }
