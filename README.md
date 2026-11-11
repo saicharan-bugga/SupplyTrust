@@ -6,7 +6,14 @@
 
 ### Order. Inspect. Approve.
 
-**A multi-vendor purchase order management and quality inspection approval workflow system.**
+**A multi-vendor purchase order and quality-inspection approval platform,**<br/>
+**designed so procurement teams always know what is late, what failed and what needs a decision.**
+
+<br/>
+
+<img src="docs/screenshots/dashboard-laptop.png" alt="SupplyTrust dashboard" width="900" />
+
+<br/>
 
 ![React](https://img.shields.io/badge/React-19-0f766e?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-0f766e?style=for-the-badge&logo=typescript&logoColor=white)
@@ -17,11 +24,21 @@
 
 `PST_PD_007` &nbsp;|&nbsp; Batch 2026 &nbsp;|&nbsp; Level 3 (Stretch) &nbsp;|&nbsp; 4-week OJT project
 
-[Overview](#-overview) · [Screens](#-screens) · [Features](#-features) · [Roles](#-roles-and-permissions) · [Workflow](#-workflow) · [Tech stack](#-tech-stack) · [Getting started](#-getting-started) · [4-week plan](#-4-week-plan) · [Evaluation](#-evaluation) · [Team](#-team)
+[Overview](#overview) · [Highlights](#highlights) · [Screens](#screens) · [Features](#features) · [Roles](#roles-and-permissions) · [Workflow](#workflow) · [Tech stack](#tech-stack) · [Getting started](#getting-started) · [4-week plan](#4-week-plan) · [Evaluation](#evaluation) · [Team](#team)
 
 </div>
 
 ---
+
+## Highlights
+
+| | |
+|---|---|
+| **Executive dashboard** | Welcome banner, KPI cards, order pipeline, quality ring, spend by vendor, upcoming deliveries, delayed and pending lists and a live activity timeline |
+| **Cinematic, classic intro** | Four hand-built gold-and-teal intro sequences (curtains, seal, counter, spotlight); a different one every visit |
+| **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
+| **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
+| **Built to be trusted** | 28 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
 
 ## Overview
 
@@ -47,9 +64,13 @@ Procurement officers often manage purchase orders, vendor communication, deliver
 
 <div align="center">
 
-**Animated intro** (click the logo in the sidebar to replay it)
+**Four classic intros, chosen at random on every visit**
 
-<img src="docs/screenshots/intro.png" alt="SupplyTrust animated intro screen" width="860" />
+| Curtains | Gold seal |
+|---|---|
+| <img src="docs/screenshots/intro-1.png" alt="Curtains intro" /> | <img src="docs/screenshots/intro-2.png" alt="Gold seal intro" /> |
+| **Counter** | **Spotlight** |
+| <img src="docs/screenshots/intro-3.png" alt="Counter intro" /> | <img src="docs/screenshots/intro-4.png" alt="Spotlight intro" /> |
 
 </div>
 
@@ -65,18 +86,19 @@ Procurement officers often manage purchase orders, vendor communication, deliver
 |---|---|---|
 | <img src="docs/screenshots/dashboard-tablet.png" alt="Dashboard on a tablet" width="300" /> | <img src="docs/screenshots/dashboard-phone.png" alt="Dashboard on a phone" width="220" /> | <img src="docs/screenshots/orders-phone.png" alt="Orders on a phone" width="220" /> |
 
-The order list switches from a table to cards on small screens, the sidebar collapses into a menu, and forms stay usable without horizontal scrolling.
+The order list switches from a table to cards on small screens, the sidebar stays as a slim icon rail that expands over the page, and forms stay usable without horizontal scrolling.
 
 Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wireframes.md).
 
 ## Features
 
 **Built (Week 1)**
-- Animated brand intro with skip and reduced-motion support; click the logo to replay
-- Responsive app shell: sidebar, header, skip-to-content link, role-aware navigation
+- Four randomised classic intro animations with skip and reduced-motion support
+- Responsive app shell: collapsible icon-only sidebar (one-tap expand), live alert badges, frosted top bar, skip-to-content link, role-aware navigation
+- Quick search (Ctrl + K) and a notification bell listing delayed and pending orders
 - Demo user switcher (no login needed) with role-based menus
-- Dashboard with KPI cards (total orders, pending approvals, delayed orders, inspection failures), delayed-order and awaiting-approval lists
-- Purchase order list with search, status filter, sortable columns and pagination
+- Premium dashboard: personalised greeting, KPI cards, order pipeline, quality health ring, spend by vendor, upcoming deliveries, delayed and awaiting-approval lists, recent activity timeline
+- Purchase order list with search, quick status chips, sortable columns, pagination and CSV export
 - Status badges that use an icon and text, not colour alone
 - Vendors see only their own orders
 - Derived metrics (order value, delay, outstanding quantity, rejection rate) calculated from records
@@ -192,7 +214,7 @@ Order status flow: `Draft -> Pending Approval -> Approved -> Ordered -> Partiall
 | Deployment | Vercel or Netlify (frontend), a hosting service for the REST API |
 | Stretch features | PWA offline mode, customisable dashboards, Framer Motion, PDF/CSV export, automated performance monitoring |
 
-Design system: deep teal brand colour, dark ink navigation, amber accents and a warm neutral background, with distinct semantic colours for approved, pending, delayed, rejected and cancelled states. Accessibility targets WCAG 2.2 AA.
+Design system: deep teal and ink surfaces with gold accents, Cormorant Garamond for brand moments and Inter for the interface, soft layered shadows and distinct semantic colours for approved, pending, delayed, rejected and cancelled states. Accessibility targets WCAG 2.2 AA.
 
 ## Getting started
 
@@ -216,7 +238,7 @@ Open the address shown in the terminal (usually http://localhost:5173).
 | `npm run coverage` | Run tests with a coverage report |
 | `npm run lint` | Lint the code |
 
-Tip: add `?skipintro` to the URL to bypass the intro animation. Use **Settings > Reset sample data** to restore the original dataset.
+Tip: add `?skipintro` to the URL to bypass the intro, or `?intro=1` to `?intro=4` to preview a specific one. Use **Settings > Reset sample data** to restore the original dataset.
 
 ## Project structure
 
@@ -356,7 +378,7 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 | Role | Name |
 |---|---|
 | Student 1 | **Lingala Navadeep** |
-| Student 2 | **Sai Charan Bugga** |
+| Student 2 | **Sai Charan Bugga** - [@saicharan-bugga](https://github.com/saicharan-bugga) |
 | Mentor / Reviewer | **Tanishka** |
 
 <div align="center">
