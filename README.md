@@ -38,7 +38,7 @@
 | **Cinematic, classic intro** | Four hand-built gold-and-teal intro sequences (curtains, seal, counter, spotlight); a different one every visit |
 | **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
 | **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
-| **Built to be trusted** | 28 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
+| **Built to be trusted** | 46 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
 
 ## Overview
 
@@ -80,6 +80,12 @@ Procurement officers often manage purchase orders, vendor communication, deliver
 |---|---|
 | <img src="docs/screenshots/dashboard-laptop.png" alt="Dashboard on a laptop" /> | <img src="docs/screenshots/orders-laptop.png" alt="Purchase order list on a laptop" /> |
 
+### Week 2 screens
+
+| Create order | Order details | Vendors |
+|---|---|---|
+| <img src="docs/screenshots/week2-create-order.png" alt="Create purchase order" /> | <img src="docs/screenshots/week2-order-details.png" alt="Order details with status history" /> | <img src="docs/screenshots/week2-vendors.png" alt="Vendor management" /> |
+
 ### Tablet and phone
 
 | Tablet - dashboard | Phone - dashboard | Phone - orders |
@@ -106,9 +112,14 @@ Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wi
 - Reusable components: `AppLayout`, `DashboardCard`, `PurchaseOrderTable`, `OrderStatusBadge`, `SearchFilterBar`, `VendorSelector`, `OrderTimeline`, `ConfirmDialog`, `NotificationToast`
 - Unit and component tests
 
+**Built (Week 2)**
+- Create and edit purchase orders with a validated form (React Hook Form + Zod): multiple items, live total, inline errors, save as draft or submit for approval
+- Order detail page: summary cards, itemised lines, status history timeline, inspection summary
+- Enforced status workflow: invalid transitions are blocked, only permitted roles see each action, cancelling asks for confirmation, and every change records who, when, and the previous and new status
+- Orders can be edited only while Draft or Pending Approval; cancelled and received orders are locked
+- Vendor management: add, edit, activate or deactivate vendors with per-vendor order counts and value; inactive vendors cannot receive new orders
+
 **Coming next**
-- Purchase order create / edit / cancel with validated forms (Week 2)
-- Vendor management and order detail page with status history (Week 2)
 - Goods receipt, quality inspection and approval workflow (Week 3)
 - Charts, exports, notifications, audit log, optional backend (Stretch)
 
@@ -265,8 +276,8 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 | Week | Focus | Expected output | Status |
 |---|---|---|---|
 | **1** | Requirements, user journeys, wireframes, Git repository, React + Vite setup, Tailwind design system, routing, reusable component library | Responsive dashboard shell, design system and initial purchase order screen | **Complete** |
-| **2** | Purchase order CRUD, vendor selection, search, status filters, forms, LocalStorage / JSON persistence | Working purchase order and vendor management workflows | Next |
-| **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | Planned |
+| **2** | Purchase order CRUD, vendor selection, search, status filters, forms, LocalStorage / JSON persistence | Working purchase order and vendor management workflows | **Complete** |
+| **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | Next |
 | **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | Planned |
 | Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | Optional |
 | Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | Optional |
@@ -284,6 +295,15 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Reusable component library with typed props and tests - **28 tests, 93.5% statement coverage** of `src/components` and `src/lib` (the documented coverage scope, set in `app/vite.config.ts`)
 - [x] Responsive dashboard shell checked at phone, tablet and laptop widths
 - [x] Initial purchase order screen (search, filter, sort, pagination)
+
+### Week 2 checklist
+
+- [x] Purchase order create / edit / cancel with Zod validation and inline errors
+- [x] Vendor selection (active vendors only) and vendor management screen
+- [x] Order detail page with status history and inspection summary
+- [x] Allowed-transition map and role rules - [`app/src/lib/transitions.ts`](app/src/lib/transitions.ts)
+- [x] Search, status filters, sorting, pagination, LocalStorage persistence
+- [x] **46 tests passing**, 92% line coverage of `src/components` and `src/lib`
 
 ## Evaluation
 

@@ -1,17 +1,18 @@
-import { ChevronLeft, ChevronRight, Download, Inbox } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Download, Inbox, Plus } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { SearchFilterBar } from '../components/SearchFilterBar'
 import { PurchaseOrderTable, type SortKey, type SortState } from '../components/PurchaseOrderTable'
 import { formatMoney, orderTotal } from '../lib/derived'
 import { STATUS_COLORS, toCsv } from '../lib/insights'
+import { can } from '../lib/permissions'
 import { useApp } from '../state/AppContext'
 import type { OrderStatus } from '../types'
 
 const PAGE_SIZE = 8
 
 export function OrdersPage() {
-  const { data, visibleOrders, notify } = useApp()
+  const { data, visibleOrders, notify, currentUser } = useApp()
   const [params] = useSearchParams()
   const [query, setQuery] = useState(() => params.get('q') ?? '')
   const [status, setStatus] = useState<OrderStatus | 'All'>('All')
@@ -72,6 +73,12 @@ export function OrdersPage() {
             {filtered.length} {filtered.length === 1 ? 'order' : 'orders'} · {formatMoney(filteredValue)} total value
           </p>
         </div>
+        <div className="flex flex-wrap gap-2">
+        {can(currentUser.role, 'order.create') && (
+          <Link to="/orders/new" className="inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-teal-700/30 hover:bg-teal-800">
+            <Plus size={16} aria-hidden /> New order
+          </Link>
+        )}
         <button
           type="button"
           onClick={exportCsv}
@@ -80,6 +87,7 @@ export function OrdersPage() {
         >
           <Download size={16} aria-hidden /> Export CSV
         </button>
+        </div>
       </div>
 
       <div className="st-card st-rise p-4" style={{ ['--d' as string]: '0.05s' }}>
@@ -117,7 +125,7 @@ export function OrdersPage() {
       </div>
 
       {visibleOrders.length === 0 ? (
-        <EmptyState text="No purchase orders yet." />
+        <EmptyState text="No purchase orders yet." action={can(currentUser.role, 'order.create')} />
       ) : filtered.length === 0 ? (
         <EmptyState text="No records match the current filters." />
       ) : (
@@ -145,13 +153,18 @@ export function OrdersPage() {
   )
 }
 
-function EmptyState({ text }: { text: string }) {
+function EmptyState({ text, action = false }: { text: string; action?: boolean }) {
   return (
     <div className="st-card flex flex-col items-center gap-3 p-10 text-center text-slate-600">
       <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
         <Inbox size={22} aria-hidden />
       </span>
       <p>{text}</p>
+      {action && (
+        <Link to="/orders/new" className="rounded-xl bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800">
+          Create the first order
+        </Link>
+      )}
     </div>
   )
 }

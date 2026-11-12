@@ -2,9 +2,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './components/AppLayout'
 import { SplashScreen } from './components/SplashScreen'
 import { DashboardPage } from './pages/DashboardPage'
+import { OrderDetailPage } from './pages/OrderDetailPage'
+import { OrderFormPage } from './pages/OrderFormPage'
 import { OrdersPage } from './pages/OrdersPage'
 import { PlaceholderPage } from './pages/PlaceholderPage'
 import { SettingsPage } from './pages/SettingsPage'
+import { VendorsPage } from './pages/VendorsPage'
 import { AppProvider, useApp } from './state/AppContext'
 
 function Intro() {
@@ -21,8 +24,10 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="orders" element={<OrdersPage />} />
-            <Route path="orders/:orderId" element={<PlaceholderPage title="Order details" week={2} />} />
-            <Route path="vendors" element={<PlaceholderPage title="Vendors" week={2} />} />
+            <Route path="orders/new" element={<OrderFormPage />} />
+            <Route path="orders/:orderId" element={<OrderDetailPage />} />
+            <Route path="orders/:orderId/edit" element={<OrderFormPage />} />
+            <Route path="vendors" element={<VendorsPage />} />
             <Route path="receipts" element={<PlaceholderPage title="Goods receipt" week={3} />} />
             <Route path="inspections" element={<PlaceholderPage title="Quality inspection" week={3} />} />
             <Route path="approvals" element={<PlaceholderPage title="Approval queue" week={3} />} />
