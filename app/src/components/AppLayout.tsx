@@ -43,6 +43,7 @@ export function AppLayout() {
   const [palette, setPalette] = useState(false)
   const [open, setOpen] = useState(false)
   const [bell, setBell] = useState(false)
+  const bellRef = useRef<HTMLDivElement>(null)
   const [q, setQ] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
@@ -66,6 +67,20 @@ export function AppLayout() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
+  // Close the notifications panel when clicking or tapping anywhere outside it.
+  useEffect(() => {
+    if (!bell) return
+    const onOutside = (e: MouseEvent | TouchEvent) => {
+      if (!bellRef.current?.contains(e.target as Node)) setBell(false)
+    }
+    document.addEventListener('mousedown', onOutside)
+    document.addEventListener('touchstart', onOutside)
+    return () => {
+      document.removeEventListener('mousedown', onOutside)
+      document.removeEventListener('touchstart', onOutside)
+    }
+  }, [bell])
 
   const goOrder = (id: string) => {
     setBell(false)
@@ -205,7 +220,7 @@ export function AppLayout() {
             {theme === 'dark' ? <Sun size={19} aria-hidden /> : <Moon size={19} aria-hidden />}
           </button>
 
-          <div className="relative">
+          <div className="relative" ref={bellRef}>
             <button
               type="button"
               onClick={() => setBell((b) => !b)}
