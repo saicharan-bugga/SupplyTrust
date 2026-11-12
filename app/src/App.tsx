@@ -1,11 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './components/AppLayout'
 import { SplashScreen } from './components/SplashScreen'
+import { ApprovalsPage } from './pages/ApprovalsPage'
+import { AuditPage } from './pages/AuditPage'
 import { DashboardPage } from './pages/DashboardPage'
+import { InspectionDetailPage } from './pages/InspectionDetailPage'
+import { InspectionsPage } from './pages/InspectionsPage'
 import { OrderDetailPage } from './pages/OrderDetailPage'
 import { OrderFormPage } from './pages/OrderFormPage'
 import { OrdersPage } from './pages/OrdersPage'
 import { PlaceholderPage } from './pages/PlaceholderPage'
+import { ReceiptsPage } from './pages/ReceiptsPage'
+import { ReportsPage } from './pages/ReportsPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { VendorsPage } from './pages/VendorsPage'
 import { AppProvider, useApp } from './state/AppContext'
@@ -28,10 +34,12 @@ export default function App() {
             <Route path="orders/:orderId" element={<OrderDetailPage />} />
             <Route path="orders/:orderId/edit" element={<OrderFormPage />} />
             <Route path="vendors" element={<VendorsPage />} />
-            <Route path="receipts" element={<PlaceholderPage title="Goods receipt" week={3} />} />
-            <Route path="inspections" element={<PlaceholderPage title="Quality inspection" week={3} />} />
-            <Route path="approvals" element={<PlaceholderPage title="Approval queue" week={3} />} />
-            <Route path="reports" element={<PlaceholderPage title="Reports & analytics" week={4} />} />
+            <Route path="receipts" element={<ReceiptsPage />} />
+            <Route path="inspections" element={<InspectionsPage />} />
+            <Route path="inspections/:inspectionId" element={<InspectionDetailPage />} />
+            <Route path="approvals" element={<ApprovalsPage />} />
+            <Route path="reports" element={<ReportsPage />} />
+            <Route path="audit" element={<AuditPage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="*" element={<PlaceholderPage title="Page not found" week={1} />} />
           </Route>

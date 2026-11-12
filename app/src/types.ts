@@ -111,6 +111,15 @@ export interface StatusHistory {
   changedAt: string
 }
 
+export interface AuditEntry {
+  auditId: string
+  orderId?: string
+  actorId: string
+  action: string
+  detail: string
+  at: string
+}
+
 export interface AppData {
   users: User[]
   vendors: Vendor[]
@@ -119,4 +128,5 @@ export interface AppData {
   inspections: QualityInspection[]
   approvals: ApprovalRecord[]
   history: StatusHistory[]
+  audit: AuditEntry[]
 }

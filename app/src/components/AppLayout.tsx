@@ -4,9 +4,12 @@ import {
   ClipboardList,
   LayoutDashboard,
   Menu,
+  Moon,
   PackageCheck,
+  ScrollText,
   Search,
   Settings,
+  Sun,
   ShieldCheck,
   Store,
   TrendingUp,
@@ -19,6 +22,7 @@ import { initials } from '../lib/insights'
 import { NAV_ITEMS } from '../lib/permissions'
 import { useApp } from '../state/AppContext'
 import { ROLE_LABELS } from '../types'
+import { CommandPalette } from './CommandPalette'
 import { LogoMark, LogoWordmark } from './Logo'
 import { ToastRegion } from './NotificationToast'
 
@@ -30,11 +34,13 @@ const ICONS: Record<string, LucideIcon> = {
   '/inspections': ShieldCheck,
   '/approvals': CheckCheck,
   '/reports': TrendingUp,
+  '/audit': ScrollText,
   '/settings': Settings,
 }
 
 export function AppLayout() {
-  const { currentUser, data, setCurrentUserId, visibleOrders } = useApp()
+  const { currentUser, data, setCurrentUserId, visibleOrders, theme, toggleTheme } = useApp()
+  const [palette, setPalette] = useState(false)
   const [open, setOpen] = useState(false)
   const [bell, setBell] = useState(false)
   const [q, setQ] = useState('')
@@ -53,7 +59,7 @@ export function AppLayout() {
     const onKey = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
-        searchRef.current?.focus()
+        setPalette((p) => !p)
       }
       if (e.key === 'Escape') setBell(false)
     }
@@ -190,6 +196,15 @@ export function AppLayout() {
 
           <div className="flex-1 sm:hidden" />
 
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="rounded-xl p-2.5 text-slate-600 transition hover:bg-slate-900/5"
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          >
+            {theme === 'dark' ? <Sun size={19} aria-hidden /> : <Moon size={19} aria-hidden />}
+          </button>
+
           <div className="relative">
             <button
               type="button"
@@ -255,6 +270,7 @@ export function AppLayout() {
         </main>
         <footer className="px-6 pb-6 text-center text-xs text-slate-400">SupplyTrust · Order. Inspect. Approve.</footer>
       </div>
+      <CommandPalette open={palette} onClose={() => setPalette(false)} />
       <ToastRegion />
     </div>
   )

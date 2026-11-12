@@ -2,6 +2,7 @@ import { AlertTriangle, ArrowRight, CalendarClock, ClipboardList, Hourglass, Plu
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { DashboardCard } from '../components/DashboardCard'
+import { TaskPanel } from '../components/TaskPanel'
 import { OrderStatusBadge } from '../components/OrderStatusBadge'
 import { dashboardStats, delayDays, formatDate, formatMoney, isDelayed, orderTotal, rejectionRate } from '../lib/derived'
 import { daysUntil, greeting, initials, recentActivity, statusBreakdown, upcomingDeliveries, vendorSpend, STATUS_COLORS } from '../lib/insights'
@@ -90,7 +91,7 @@ export function DashboardPage() {
                 : `${delayed.length} delayed ${delayed.length === 1 ? 'order' : 'orders'} and ${pending.length} awaiting approval need your attention today.`}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link to="/orders" className="st-btn-gold inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm">
+              <Link to={can(currentUser.role, 'order.create') ? '/orders/new' : '/orders'} className="st-btn-gold inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm">
                 {can(currentUser.role, 'order.create') ? <Plus size={16} aria-hidden /> : <ClipboardList size={16} aria-hidden />}
                 {can(currentUser.role, 'order.create') ? 'New purchase order' : 'View purchase orders'}
               </Link>
@@ -116,6 +117,8 @@ export function DashboardPage() {
           </dl>
         </div>
       </section>
+
+      <TaskPanel />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <DashboardCard delay={0.05} title="Total orders" value={stats.totalOrders} icon={<ClipboardList size={20} aria-hidden />} hint={`${formatMoney(stats.totalValue)} active value`} />

@@ -56,4 +56,5 @@ export const sampleData: AppData = {
     { historyId: 'h6', orderId: 'PO-2026-004', previousStatus: null, newStatus: 'Pending Approval', changedBy: 'u1', changedAt: '2026-11-04' },
     { historyId: 'h7', orderId: 'PO-2026-007', previousStatus: null, newStatus: 'Cancelled', changedBy: 'u1', changedAt: '2026-10-26' },
   ],
+  audit: [],
 }

@@ -1,12 +1,15 @@
-import { ArrowLeft, Pencil, ShieldAlert } from 'lucide-react'
+import { ArrowLeft, CalendarClock, Pencil, Printer, ShieldAlert } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ConfirmDialog } from '../components/ConfirmDialog'
 import { OrderStatusBadge } from '../components/OrderStatusBadge'
+import { OrderPipeline } from '../components/OrderPipeline'
 import { OrderTimeline } from '../components/OrderTimeline'
+import { inputCls } from '../components/ui'
 import { delayDays, formatDate, formatMoney, isDelayed, orderTotal, outstandingQuantity, receivedQuantity } from '../lib/derived'
 import { can } from '../lib/permissions'
 import { ALLOWED_TRANSITIONS, applyTransition, canRoleTransition, isEditable } from '../lib/transitions'
+import { canReceive, updateEta } from '../lib/workflow'
 import { useApp } from '../state/AppContext'
 import type { OrderStatus } from '../types'
 
@@ -25,6 +28,7 @@ export function OrderDetailPage() {
   const { orderId } = useParams()
   const { data, setData, visibleOrders, currentUser, notify } = useApp()
   const [confirm, setConfirm] = useState<OrderStatus | null>(null)
+  const [eta, setEta] = useState('')
 
   const order = visibleOrders.find((o) => o.orderId === orderId)
   if (!order) {
@@ -72,7 +76,10 @@ export function OrderDetailPage() {
             {isDelayed(order) && <OrderStatusBadge status="Delayed" />}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 st-no-print">
+          <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50">
+            <Printer size={16} aria-hidden /> Print / PDF
+          </button>
           {can(currentUser.role, 'order.edit') && isEditable(order) && (
             <Link to={`/orders/${order.orderId}/edit`} className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50">
               <Pencil size={16} aria-hidden /> Edit
@@ -95,6 +102,35 @@ export function OrderDetailPage() {
           })}
         </div>
       </div>
+
+      <OrderPipeline status={order.status} />
+
+      {(can(currentUser.role, 'order.updateFulfillment') || can(currentUser.role, 'order.edit')) && canReceive(order) && (
+        <form
+          aria-label="Update delivery date"
+          className="st-card st-no-print flex flex-wrap items-end gap-3 p-5"
+          onSubmit={(e) => {
+            e.preventDefault()
+            try {
+              setData((d) => updateEta(d, order.orderId, eta, currentUser.userId))
+              notify(`Delivery date for ${order.orderId} updated.`)
+              setEta('')
+            } catch (err) {
+              notify(err instanceof Error ? err.message : 'Could not update the date.', 'error')
+            }
+          }}
+        >
+          <div>
+            <label htmlFor="eta" className="mb-1 flex items-center gap-1.5 text-sm font-medium text-slate-700">
+              <CalendarClock size={15} aria-hidden /> New expected delivery date
+            </label>
+            <input id="eta" type="date" value={eta} onChange={(e) => setEta(e.target.value)} className={inputCls()} />
+          </div>
+          <button type="submit" className="rounded-xl bg-teal-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-800">
+            Update date
+          </button>
+        </form>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Summary label="Order value" value={formatMoney(orderTotal(order))} />

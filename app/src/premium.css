@@ -326,3 +326,52 @@ body {
     left: 120%;
   }
 }
+
+/* ---- Week 3 additions ---- */
+@keyframes st-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55); }
+  50% { box-shadow: 0 0 0 9px rgba(245, 158, 11, 0); }
+}
+.st-pulse { animation: st-pulse 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .st-pulse { animation: none; }
+}
+
+@media print {
+  .st-sidebar, header, .st-no-print, nav[aria-label="Main"], button, a[href="#main"] { display: none !important; }
+  body { background: #fff !important; }
+  .st-card { box-shadow: none !important; border: 1px solid #cbd5e1; break-inside: avoid; }
+  .st-rise { opacity: 1 !important; transform: none !important; animation: none !important; }
+}
+
+/* ---- Dark theme: remaps the light utility colours used across the app ---- */
+html.dark body { background: #07151a; color: #e2edf0; }
+html.dark .bg-white, html.dark .st-card, html.dark dialog { background-color: #0e2229 !important; color: #e2edf0; }
+html.dark .bg-white\/75 { background-color: rgba(7, 21, 26, 0.8) !important; }
+html.dark .st-card { box-shadow: 0 0 0 1px rgba(148, 210, 205, 0.1), 0 10px 30px -14px rgba(0, 0, 0, 0.6); }
+html.dark .bg-slate-50, html.dark .bg-slate-50\/80 { background-color: #12303a !important; }
+html.dark .bg-slate-100 { background-color: #17363f !important; }
+html.dark .bg-slate-900\/5 { background-color: rgba(255, 255, 255, 0.07) !important; }
+html.dark .text-slate-900, html.dark .text-slate-800 { color: #f1f7f8 !important; }
+html.dark .text-slate-700 { color: #d3e2e6 !important; }
+html.dark .text-slate-600 { color: #aac0c6 !important; }
+html.dark .text-slate-500, html.dark .text-slate-400 { color: #86a1a8 !important; }
+html.dark .text-teal-800, html.dark .text-teal-900 { color: #5eead4 !important; }
+html.dark .border-slate-300, html.dark .border-slate-100, html.dark .border-slate-900\/5 { border-color: #24454e !important; }
+html.dark .divide-slate-100 > * + *, html.dark .divide-slate-200 > * + * { border-color: #1d3b44 !important; }
+html.dark .ring-slate-200 { --tw-ring-color: #24454e !important; }
+html.dark input, html.dark select, html.dark textarea { background-color: #0a1b21 !important; color: #e2edf0; }
+html.dark .hover\:bg-slate-50:hover, html.dark .hover\:bg-teal-50:hover, html.dark .hover\:bg-slate-200:hover { background-color: #17363f !important; }
+html.dark .bg-teal-50, html.dark .bg-teal-50\/40, html.dark .hover\:bg-teal-50\/40:hover { background-color: #123a3d !important; }
+html.dark [class*="bg-rose-50"], html.dark [class*="bg-red-50"] { background-color: rgba(244, 63, 94, 0.15) !important; }
+html.dark [class*="bg-amber-50"] { background-color: rgba(245, 158, 11, 0.15) !important; }
+html.dark [class*="bg-emerald-50"], html.dark [class*="bg-green-50"] { background-color: rgba(16, 185, 129, 0.15) !important; }
+html.dark [class*="bg-sky-50"], html.dark [class*="bg-cyan-50"] { background-color: rgba(14, 165, 233, 0.15) !important; }
+html.dark [class*="bg-orange-50"] { background-color: rgba(249, 115, 22, 0.15) !important; }
+html.dark [class*="text-rose-7"], html.dark [class*="text-rose-8"], html.dark [class*="text-red-7"], html.dark [class*="text-red-8"] { color: #fda4af !important; }
+html.dark [class*="text-amber-8"], html.dark [class*="text-amber-9"] { color: #fcd34d !important; }
+html.dark [class*="text-emerald-7"], html.dark [class*="text-emerald-8"], html.dark [class*="text-green-8"] { color: #6ee7b7 !important; }
+html.dark [class*="text-sky-8"], html.dark [class*="text-cyan-8"], html.dark [class*="text-orange-8"] { color: #7dd3fc !important; }
+html.dark .st-th, html.dark thead { background-color: #12303a !important; }
+html.dark .bg-amber-100 { background-color: #4a3410 !important; }
+html.dark .text-slate-100 { color: #e2edf0; }

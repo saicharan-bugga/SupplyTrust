@@ -38,7 +38,7 @@
 | **Cinematic, classic intro** | Four hand-built gold-and-teal intro sequences (curtains, seal, counter, spotlight); a different one every visit |
 | **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
 | **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
-| **Built to be trusted** | 46 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
+| **Built to be trusted** | 73 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
 
 ## Overview
 
@@ -86,6 +86,16 @@ Procurement officers often manage purchase orders, vendor communication, deliver
 |---|---|---|
 | <img src="docs/screenshots/week2-create-order.png" alt="Create purchase order" /> | <img src="docs/screenshots/week2-order-details.png" alt="Order details with status history" /> | <img src="docs/screenshots/week2-vendors.png" alt="Vendor management" /> |
 
+### Week 3 screens
+
+| Approval queue | Reports and analytics | Dark theme |
+|---|---|---|
+| <img src="docs/screenshots/week3-approvals.png" alt="Approval queue" /> | <img src="docs/screenshots/week3-reports.png" alt="Reports and analytics" /> | <img src="docs/screenshots/week3-dark-dashboard.png" alt="Dark theme dashboard" /> |
+
+| Order progress | Goods receipt | Inspection |
+|---|---|---|
+| <img src="docs/screenshots/week3-order-details.png" alt="Order details with progress tracker" /> | <img src="docs/screenshots/week3-receipts.png" alt="Goods receipt" /> | <img src="docs/screenshots/week3-inspection-details.png" alt="Inspection details" /> |
+
 ### Tablet and phone
 
 | Tablet - dashboard | Phone - dashboard | Phone - orders |
@@ -119,8 +129,18 @@ Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wi
 - Orders can be edited only while Draft or Pending Approval; cancelled and received orders are locked
 - Vendor management: add, edit, activate or deactivate vendors with per-vendor order counts and value; inactive vendors cannot receive new orders
 
+**Built (Week 3)**
+- Goods receipt: record what arrived per item, checked against outstanding quantity; moves the order to Partially Received or Received and opens a pending inspection automatically
+- Quality inspection: accepted and rejected units must equal inspected units, defects are categorised and must add up, outcome (Passed or Failed at 10% rejection) is computed
+- Approval queue: approve, reject or request reinspection with mandatory comments and a confirmation on rejection; a failed inspection never auto-accepts the whole order; reinspection keeps the old record and opens a new one
+- Inspection detail page with decision history and other inspections of the same order
+- Role-specific "your work today" task cards, vendor delivery-date updates, visual order progress tracker
+- Reports and analytics: charts (status, spend, defects), vendor performance scorecard, CSV export and print / PDF
+- Audit log of every status change, receipt, inspection, decision and date update, searchable and exportable
+- Command palette (Ctrl + K) to jump to any page, order or vendor; dark theme toggle
+- Unauthorised actions are blocked in both the UI and the logic layer
+
 **Coming next**
-- Goods receipt, quality inspection and approval workflow (Week 3)
 - Charts, exports, notifications, audit log, optional backend (Stretch)
 
 <details>
@@ -277,8 +297,8 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 |---|---|---|---|
 | **1** | Requirements, user journeys, wireframes, Git repository, React + Vite setup, Tailwind design system, routing, reusable component library | Responsive dashboard shell, design system and initial purchase order screen | **Complete** |
 | **2** | Purchase order CRUD, vendor selection, search, status filters, forms, LocalStorage / JSON persistence | Working purchase order and vendor management workflows | **Complete** |
-| **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | Next |
-| **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | Planned |
+| **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | **Complete** |
+| **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | Next |
 | Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | Optional |
 | Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | Optional |
 
@@ -304,6 +324,16 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Allowed-transition map and role rules - [`app/src/lib/transitions.ts`](app/src/lib/transitions.ts)
 - [x] Search, status filters, sorting, pagination, LocalStorage persistence
 - [x] **46 tests passing**, 92% line coverage of `src/components` and `src/lib`
+
+### Week 3 checklist
+
+- [x] Goods receipt with quantity reconciliation (rule 3)
+- [x] Quality inspection with accepted + rejected = inspected (rule 4) and defect records
+- [x] Approval / rejection / reinspection with comments, roles enforced (rules 5, 6, 7)
+- [x] Cancelled orders accept no further updates (rule 8)
+- [x] Every important change logged with actor, time, previous and new status (rule 9)
+- [x] Role-specific dashboards, reports, audit log, CSV and print export
+- [x] **73 tests passing**, 88% line coverage of `src/components` and `src/lib`
 
 ## Evaluation
 

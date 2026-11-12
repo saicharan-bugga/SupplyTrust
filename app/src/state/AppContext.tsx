@@ -2,8 +2,9 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { sampleData } from '../data/sample'
 import type { AppData, PurchaseOrder, User } from '../types'
 
-const DATA_KEY = 'supplytrust.data.v1'
+const DATA_KEY = 'supplytrust.data.v2'
 const USER_KEY = 'supplytrust.user.v1'
+const THEME_KEY = 'supplytrust.theme.v1'
 
 export interface Toast {
   id: number
@@ -21,6 +22,8 @@ interface AppContextValue {
   toasts: Toast[]
   notify: (message: string, severity?: Toast['severity']) => void
   dismissToast: (id: number) => void
+  theme: 'light' | 'dark'
+  toggleTheme: () => void
   introVisible: boolean
   playIntro: () => void
   endIntro: () => void
@@ -38,8 +41,18 @@ function load<T>(key: string, fallback: T): T {
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [data, setDataState] = useState<AppData>(() => load(DATA_KEY, sampleData))
+  const [data, setDataState] = useState<AppData>(() => ({ ...sampleData, ...load<Partial<AppData>>(DATA_KEY, sampleData) }))
   const [userId, setUserId] = useState<string>(() => load(USER_KEY, 'u1'))
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => (window.location.search.includes('theme=dark') || load<string>(THEME_KEY, '') === 'dark' ? 'dark' : 'light'))
+  const toggleTheme = useCallback(() => setTheme((t) => (t === 'dark' ? 'light' : 'dark')), [])
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark')
+    try {
+      localStorage.setItem(THEME_KEY, JSON.stringify(theme))
+    } catch {
+      /* storage unavailable */
+    }
+  }, [theme])
   const [toasts, setToasts] = useState<Toast[]>([])
   // The intro plays on every fresh page load and whenever the logo is clicked.
   // Add ?skipintro to the URL to bypass it (used for automated screenshots).
@@ -96,6 +109,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     toasts,
     notify,
     dismissToast,
+    theme,
+    toggleTheme,
     introVisible,
     playIntro,
     endIntro,
