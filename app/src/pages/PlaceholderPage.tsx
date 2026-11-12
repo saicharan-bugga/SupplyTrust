@@ -9,7 +9,7 @@ export function PlaceholderPage({ title, week }: { title: string; week: number }
           <Hammer size={24} aria-hidden />
         </span>
         <p className="font-semibold text-slate-800">Coming soon</p>
-        <p className="text-sm text-slate-500">This screen is planned for week {week}.</p>
+        <p className="text-sm text-slate-600">This screen is planned for week {week}.</p>
       </div>
     </div>
   )

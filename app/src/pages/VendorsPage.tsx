@@ -31,7 +31,7 @@ function VendorForm({ vendor, onSave, onCancel }: { vendor?: Vendor; onSave: (v:
     { key: 'contact', label: 'Contact number', type: 'tel' },
   ]
   return (
-    <form onSubmit={handleSubmit(onSave)} noValidate aria-label="Vendor form" className="st-card grid gap-4 p-5 sm:grid-cols-3">
+    <form onSubmit={handleSubmit(onSave)} noValidate aria-label="Vendor form" className="st-card grid grid-cols-1 gap-4 p-5 sm:grid-cols-3">
       {fields.map((f) => (
         <div key={f.key}>
           <label htmlFor={`v-${f.key}`} className="mb-1 block text-sm font-medium text-slate-700">
@@ -73,7 +73,7 @@ export function VendorsPage() {
       <div className="st-rise flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Vendors</h1>
-          <p className="mt-1 text-sm text-slate-500">{data.vendors.length} vendors · inactive vendors cannot receive new orders</p>
+          <p className="mt-1 text-sm text-slate-600">{data.vendors.length} vendors · inactive vendors cannot receive new orders</p>
         </div>
         {manage && editing === null && (
           <button type="button" onClick={() => setEditing('new')} className="inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-teal-700/30 hover:bg-teal-800">
@@ -101,7 +101,7 @@ export function VendorsPage() {
           <p>No vendors yet. Add your first vendor to start creating orders.</p>
         </div>
       ) : (
-        <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {data.vendors.map((v) => {
             const s = stats(v.vendorId)
             return (
@@ -121,11 +121,11 @@ export function VendorsPage() {
                 </div>
                 <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <dt className="text-xs text-slate-500">Orders</dt>
+                    <dt className="text-xs text-slate-600">Orders</dt>
                     <dd className="font-semibold tabular-nums">{s.count}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs text-slate-500">Order value</dt>
+                    <dt className="text-xs text-slate-600">Order value</dt>
                     <dd className="font-semibold tabular-nums">{formatMoney(s.value)}</dd>
                   </div>
                 </dl>

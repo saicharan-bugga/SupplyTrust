@@ -37,7 +37,7 @@ export function InspectionsPage() {
         (pending.length === 0 ? (
           <EmptyState text="Nothing to inspect. New goods receipts create inspections here." icon={<ShieldCheck size={22} aria-hidden />} />
         ) : (
-          <ul className="grid gap-4 lg:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {pending.map((i) => (
               <li key={i.inspectionId} className="st-card p-5">
                 <div className="flex items-start justify-between gap-2">
@@ -91,7 +91,7 @@ export function InspectionsPage() {
                   <Link to={`/inspections/${i.inspectionId}`} className="st-card st-card-hover flex flex-wrap items-center justify-between gap-3 p-4">
                     <div>
                       <p className="font-semibold text-slate-900">
-                        {i.orderId} <span className="font-normal text-slate-500">· {vendorOf(i.orderId)}</span>
+                        {i.orderId} <span className="font-normal text-slate-600">· {vendorOf(i.orderId)}</span>
                       </p>
                       <p className="text-sm text-slate-600">
                         {i.inspectedQuantity} inspected · {i.acceptedQuantity} accepted · {i.rejectedQuantity} rejected · {formatDate(i.inspectedAt)}
@@ -99,7 +99,7 @@ export function InspectionsPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <OrderStatusBadge status={i.outcome} />
-                      <span className="text-xs font-medium text-slate-500">{d ? d.decision : i.outcome === 'Reinspection Required' ? 'Superseded' : 'Awaiting decision'}</span>
+                      <span className="text-xs font-medium text-slate-600">{d ? d.decision : i.outcome === 'Reinspection Required' ? 'Superseded' : 'Awaiting decision'}</span>
                     </div>
                   </Link>
                 </li>

@@ -13,6 +13,10 @@
 
 <img src="docs/screenshots/dashboard-laptop.png" alt="SupplyTrust dashboard" width="900" />
 
+### [Open the live demo](https://saicharan-bugga.github.io/SupplyTrust/)
+
+No login needed: pick a role from the top bar (Procurement Officer, Manager, Vendor, Quality Inspector, Warehouse Receiver). Press **Ctrl + K** to jump anywhere.
+
 <br/>
 
 ![React](https://img.shields.io/badge/React-19-0f766e?style=for-the-badge&logo=react&logoColor=white)
@@ -38,7 +42,7 @@
 | **Cinematic, classic intro** | Four hand-built gold-and-teal intro sequences (curtains, seal, counter, spotlight); a different one every visit |
 | **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
 | **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
-| **Built to be trusted** | 73 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
+| **Built to be trusted** | 82 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
 
 ## Overview
 
@@ -242,7 +246,7 @@ Order status flow: `Draft -> Pending Approval -> Approved -> Ordered -> Partiall
 | Charts | Chart.js with react-chartjs-2 |
 | Testing | Vitest, React Testing Library, API integration tests |
 | Backend (stretch) | Node.js + Express with a persistent database |
-| Deployment | Vercel or Netlify (frontend), a hosting service for the REST API |
+| Deployment | **GitHub Pages** (live demo, `gh-pages` branch), hosting service for the REST API when built |
 | Stretch features | PWA offline mode, customisable dashboards, Framer Motion, PDF/CSV export, automated performance monitoring |
 
 Design system: deep teal and ink surfaces with gold accents, Cormorant Garamond for brand moments and Inter for the interface, soft layered shadows and distinct semantic colours for approved, pending, delayed, rejected and cancelled states. Accessibility targets WCAG 2.2 AA.
@@ -298,7 +302,7 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 | **1** | Requirements, user journeys, wireframes, Git repository, React + Vite setup, Tailwind design system, routing, reusable component library | Responsive dashboard shell, design system and initial purchase order screen | **Complete** |
 | **2** | Purchase order CRUD, vendor selection, search, status filters, forms, LocalStorage / JSON persistence | Working purchase order and vendor management workflows | **Complete** |
 | **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | **Complete** |
-| **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | Next |
+| **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | **Complete** |
 | Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | Optional |
 | Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | Optional |
 
@@ -324,6 +328,16 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Allowed-transition map and role rules - [`app/src/lib/transitions.ts`](app/src/lib/transitions.ts)
 - [x] Search, status filters, sorting, pagination, LocalStorage persistence
 - [x] **46 tests passing**, 92% line coverage of `src/components` and `src/lib`
+
+### Week 4 checklist
+
+- [x] Phone, tablet and laptop layouts checked; no horizontal page scroll at 390 px (grids fixed to single column)
+- [x] Accessibility: axe-core suite on 9 screens, 0 violations; low-contrast text raised
+- [x] **82 tests passing**, 88% line coverage of the documented scope
+- [x] Deployed: https://saicharan-bugga.github.io/SupplyTrust/
+- [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
+- [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
+- [ ] Lighthouse report (needs Chrome; see testing report)
 
 ### Week 3 checklist
 
@@ -421,7 +435,10 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 
 - Data is stored in the browser's LocalStorage, so it is per-browser and not shared between users.
 - Roles are enforced in the interface only; secure multi-user workflows need the planned Node.js backend.
-- Screens for Weeks 2 to 4 are placeholders until they are built.
+- Lighthouse scores were not obtained (the tool could not run on the development machine); performance targets are unverified. See [`docs/testing.md`](docs/testing.md).
+- Colour contrast was improved but not formally measured; automated accessibility checks cover structure, names and roles (0 violations on 9 screens).
+- No real authentication: the user switcher is a demo role selector.
+- Exports are CSV and browser print / PDF; there is no server-side PDF generation.
 
 ## Team
 

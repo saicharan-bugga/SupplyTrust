@@ -37,14 +37,14 @@ export function TaskPanel() {
 
   if (tasks.length === 0) return null
   return (
-    <section aria-label="Your tasks" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+    <section aria-label="Your tasks" className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
       {tasks.map((t, n) => (
         <Link key={t.label} to={t.to} className="st-card st-card-hover st-rise group flex items-center gap-4 p-4" style={{ ['--d' as string]: `${0.1 + n * 0.06}s` }}>
           <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${t.count > 0 ? 'bg-amber-100 text-amber-800' : 'bg-emerald-50 text-emerald-700'}`}>{t.icon}</span>
           <span className="min-w-0 flex-1">
             <span className="block text-2xl font-semibold tabular-nums text-slate-900">{t.count}</span>
-            <span className="block truncate text-sm font-medium text-slate-700">{t.label}</span>
-            <span className="block truncate text-xs text-slate-500">{t.hint}</span>
+            <span className="block text-sm font-medium text-slate-700">{t.label}</span>
+            <span className="block text-xs text-slate-600">{t.hint}</span>
           </span>
           <ArrowRight size={18} aria-hidden className="text-slate-300 transition group-hover:translate-x-1 group-hover:text-teal-700" />
         </Link>

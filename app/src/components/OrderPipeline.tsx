@@ -18,12 +18,12 @@ export function OrderPipeline({ status }: { status: OrderStatus }) {
               {n > 0 && <span className={`absolute right-1/2 top-4 h-0.5 w-full -translate-y-1/2 ${done || current ? 'bg-teal-600' : 'bg-slate-200'}`} aria-hidden />}
               <span
                 className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition ${
-                  done ? 'bg-teal-600 text-white' : current ? 'st-pulse bg-amber-400 text-amber-950 ring-4 ring-amber-200' : 'bg-slate-100 text-slate-400'
+                  done ? 'bg-teal-600 text-white' : current ? 'st-pulse bg-amber-400 text-amber-950 ring-4 ring-amber-200' : 'bg-slate-100 text-slate-600'
                 }`}
               >
                 {done ? <Check size={16} aria-hidden /> : n + 1}
               </span>
-              <span className={`mt-2 text-xs font-medium ${done || current ? 'text-slate-900' : 'text-slate-400'}`}>{s}</span>
+              <span className={`mt-2 text-xs font-medium ${done || current ? 'text-slate-900' : 'text-slate-600'}`}>{s}</span>
             </li>
           )
         })}

@@ -55,7 +55,7 @@ export function PurchaseOrderForm({
 
   return (
     <form onSubmit={submit(false)} noValidate className="space-y-6" aria-label="Purchase order form">
-      <div className="st-card grid gap-4 p-5 sm:grid-cols-2">
+      <div className="st-card grid grid-cols-1 gap-4 p-5 sm:grid-cols-2">
         <Controller
           control={control}
           name="vendorId"
@@ -84,7 +84,7 @@ export function PurchaseOrderForm({
           {fields.map((f, idx) => {
             const e = errors.items?.[idx]
             return (
-              <div key={f.id} className="grid gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-12" role="group" aria-label={`Item ${idx + 1}`}>
+              <div key={f.id} className="grid grid-cols-1 gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-12" role="group" aria-label={`Item ${idx + 1}`}>
                 <div className="sm:col-span-4">
                   <label htmlFor={`pn-${idx}`} className="mb-1 block text-xs font-medium text-slate-600">
                     Product name
@@ -133,7 +133,7 @@ export function PurchaseOrderForm({
                     onClick={() => remove(idx)}
                     disabled={fields.length === 1}
                     aria-label={`Remove item ${idx + 1}`}
-                    className="rounded-lg p-2 text-slate-500 hover:bg-rose-50 hover:text-rose-700 disabled:opacity-40"
+                    className="rounded-lg p-2 text-slate-600 hover:bg-rose-50 hover:text-rose-700 disabled:opacity-40"
                   >
                     <Trash2 size={18} aria-hidden />
                   </button>

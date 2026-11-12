@@ -65,7 +65,7 @@ export function InspectionForm({ inspection, onSubmit, onCancel }: InspectionFor
       <p className="text-sm text-slate-600">
         Inspecting <strong className="tabular-nums text-slate-900">{total}</strong> units. Accepted and rejected must add up to this number.
       </p>
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <div>
           <label htmlFor={`acc-${inspection.inspectionId}`} className="mb-1 block text-sm font-medium text-slate-700">
             Accepted units
@@ -94,7 +94,7 @@ export function InspectionForm({ inspection, onSubmit, onCancel }: InspectionFor
         <fieldset className="space-y-3 rounded-xl border border-slate-200 p-3">
           <legend className="px-1 text-sm font-semibold text-slate-800">Defects</legend>
           {defects.map((d, idx) => (
-            <div key={idx} className="grid gap-2 sm:grid-cols-[10rem_6rem_1fr_auto]" role="group" aria-label={`Defect ${idx + 1}`}>
+            <div key={idx} className="grid grid-cols-1 gap-2 sm:grid-cols-[10rem_6rem_1fr_auto]" role="group" aria-label={`Defect ${idx + 1}`}>
               <select aria-label={`Defect ${idx + 1} category`} value={d.category} onChange={(e) => setDefects((s) => s.map((x, i) => (i === idx ? { ...x, category: e.target.value } : x)))} className={inputCls()}>
                 <option value="">Category</option>
                 {DEFECT_CATEGORIES.map((c) => (
@@ -103,7 +103,7 @@ export function InspectionForm({ inspection, onSubmit, onCancel }: InspectionFor
               </select>
               <input aria-label={`Defect ${idx + 1} quantity`} type="number" min={1} placeholder="Qty" value={d.quantity} onChange={(e) => setDefects((s) => s.map((x, i) => (i === idx ? { ...x, quantity: e.target.value } : x)))} className={inputCls()} />
               <input aria-label={`Defect ${idx + 1} description`} placeholder="What is wrong?" value={d.description} onChange={(e) => setDefects((s) => s.map((x, i) => (i === idx ? { ...x, description: e.target.value } : x)))} className={inputCls()} />
-              <button type="button" aria-label={`Remove defect ${idx + 1}`} onClick={() => setDefects((s) => s.filter((_, i) => i !== idx))} className="rounded-lg p-2 text-slate-500 hover:bg-rose-50 hover:text-rose-700">
+              <button type="button" aria-label={`Remove defect ${idx + 1}`} onClick={() => setDefects((s) => s.filter((_, i) => i !== idx))} className="rounded-lg p-2 text-slate-600 hover:bg-rose-50 hover:text-rose-700">
                 <Trash2 size={16} aria-hidden />
               </button>
             </div>

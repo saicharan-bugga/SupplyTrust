@@ -88,7 +88,7 @@ export function AuditPage() {
                 </p>
                 <p className="text-slate-600">{r.detail}</p>
               </div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-600">
                 {r.actor} · {new Date(r.at).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: r.at.length > 10 ? 'short' : undefined })}
               </p>
             </li>

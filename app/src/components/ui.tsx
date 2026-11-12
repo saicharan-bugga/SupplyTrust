@@ -10,7 +10,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
     <div className="st-rise flex flex-wrap items-end justify-between gap-3">
       <div>
         <h1 className="text-3xl font-semibold tracking-tight text-slate-900">{title}</h1>
-        {subtitle && <p className="mt-1 text-sm text-slate-500">{subtitle}</p>}
+        {subtitle && <p className="mt-1 text-sm text-slate-600">{subtitle}</p>}
       </div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
     </div>
@@ -20,7 +20,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
 export function EmptyState({ text, icon, children }: { text: string; icon?: ReactNode; children?: ReactNode }) {
   return (
     <div className="st-card flex flex-col items-center gap-3 p-10 text-center text-slate-600">
-      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">{icon ?? <Inbox size={22} aria-hidden />}</span>
+      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-600">{icon ?? <Inbox size={22} aria-hidden />}</span>
       <p>{text}</p>
       {children}
     </div>

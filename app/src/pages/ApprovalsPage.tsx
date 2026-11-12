@@ -26,7 +26,7 @@ export function ApprovalsPage() {
       {queue.length === 0 ? (
         <EmptyState text="All caught up. Completed inspections appear here for approval." icon={<CheckCheck size={22} aria-hidden />} />
       ) : (
-        <ul className="grid gap-4 lg:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {queue.map((i) => (
             <li key={i.inspectionId} className="st-card st-rise p-5">
               <div className="flex items-start justify-between gap-2">
@@ -41,7 +41,7 @@ export function ApprovalsPage() {
               <p className="mt-3 text-sm text-slate-600">
                 {i.inspectedQuantity} inspected · <strong className="text-emerald-700">{i.acceptedQuantity} accepted</strong> · <strong className="text-rose-700">{i.rejectedQuantity} rejected</strong>
               </p>
-              {i.defects.length > 0 && <p className="mt-1 text-xs text-slate-500">Defects: {i.defects.map((d) => `${d.category} (${d.quantity})`).join(', ')}</p>}
+              {i.defects.length > 0 && <p className="mt-1 text-xs text-slate-600">Defects: {i.defects.map((d) => `${d.category} (${d.quantity})`).join(', ')}</p>}
               <div className="mt-4 border-t border-slate-100 pt-4">
                 {canDecide ? (
                   <ApprovalPanel
@@ -56,7 +56,7 @@ export function ApprovalsPage() {
                     }}
                   />
                 ) : (
-                  <p className="text-sm text-slate-500">Your role cannot approve or reject inspections.</p>
+                  <p className="text-sm text-slate-600">Your role cannot approve or reject inspections.</p>
                 )}
               </div>
             </li>
@@ -78,7 +78,7 @@ export function ApprovalsPage() {
                   <span className="font-semibold">
                     {orderOf(a.inspectionId)} · {a.decision}
                   </span>
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-slate-600">
                     {who(a.approverId)} · {formatDate(a.decidedAt)}
                   </span>
                 </div>

@@ -167,7 +167,7 @@ export function AppLayout() {
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-slate-900/5 bg-white/75 px-4 backdrop-blur-xl sm:px-6">
           <div className="hidden min-w-0 md:block">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-400">SupplyTrust</p>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-600">SupplyTrust</p>
             <p className="truncate text-sm font-semibold text-slate-800">{current?.label ?? 'Workspace'}</p>
           </div>
 
@@ -179,7 +179,7 @@ export function AppLayout() {
               navigate(`/orders${q.trim() ? `?q=${encodeURIComponent(q.trim())}` : ''}`)
             }}
           >
-            <Search size={16} aria-hidden className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search size={16} aria-hidden className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-600" />
             <input
               ref={searchRef}
               type="search"
@@ -189,7 +189,7 @@ export function AppLayout() {
               placeholder="Search orders or vendors…"
               className="w-full rounded-xl border-0 bg-slate-900/5 py-2 pl-10 pr-14 text-sm text-slate-900 outline-none transition focus:bg-white focus:ring-2 focus:ring-teal-500/40"
             />
-            <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md bg-white px-1.5 py-0.5 text-[0.65rem] font-semibold text-slate-400 shadow-sm ring-1 ring-slate-200 lg:block">
+            <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md bg-white px-1.5 py-0.5 text-[0.65rem] font-semibold text-slate-600 shadow-sm ring-1 ring-slate-200 lg:block">
               Ctrl K
             </kbd>
           </form>
@@ -222,7 +222,7 @@ export function AppLayout() {
             </button>
             {bell && (
               <div className="st-card st-rise absolute right-0 top-12 z-30 w-80 max-w-[85vw] p-2" role="region" aria-label="Notifications">
-                <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Needs your attention</p>
+                <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-600">Needs your attention</p>
                 {alertCount === 0 && <p className="px-3 pb-3 text-sm text-slate-600">You're all caught up.</p>}
                 <ul className="max-h-72 overflow-y-auto">
                   {delayed.map((o) => (
@@ -250,7 +250,7 @@ export function AppLayout() {
             )}
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-slate-500">
+          <label className="flex items-center gap-2 text-sm text-slate-600">
             <span className="hidden xl:inline">Demo user</span>
             <select
               value={currentUser.userId}
@@ -268,7 +268,7 @@ export function AppLayout() {
         <main id="main" className="mx-auto w-full max-w-7xl flex-1 p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
-        <footer className="px-6 pb-6 text-center text-xs text-slate-400">SupplyTrust · Order. Inspect. Approve.</footer>
+        <footer className="px-6 pb-6 text-center text-xs text-slate-600">SupplyTrust · Order. Inspect. Approve.</footer>
       </div>
       <CommandPalette open={palette} onClose={() => setPalette(false)} />
       <ToastRegion />

@@ -24,7 +24,7 @@ export function ReceiptsPage() {
       {receivable.length === 0 ? (
         <EmptyState text="No orders are waiting for goods. Orders appear here once they are sent to the vendor." icon={<PackageCheck size={22} aria-hidden />} />
       ) : (
-        <ul className="grid gap-4 lg:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {receivable.map((o, n) => {
             const got = receivedQuantity(data, o.orderId)
             const total = orderedQuantity(o)
@@ -43,7 +43,7 @@ export function ReceiptsPage() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <div className="mb-1 flex justify-between text-xs text-slate-500">
+                  <div className="mb-1 flex justify-between text-xs text-slate-600">
                     <span>
                       {got} of {total} units received
                     </span>
@@ -96,9 +96,9 @@ export function ReceiptsPage() {
                     {r.orderId}
                   </Link>{' '}
                   <span className="text-slate-600">· {r.receivedItems.reduce((s, i) => s + i.receivedQuantity, 0)} units</span>
-                  {r.notes && <p className="text-xs text-slate-500">{r.notes}</p>}
+                  {r.notes && <p className="text-xs text-slate-600">{r.notes}</p>}
                 </div>
-                <span className="text-xs text-slate-500">{formatDate(r.receivedAt)}</span>
+                <span className="text-xs text-slate-600">{formatDate(r.receivedAt)}</span>
               </li>
             ))}
           </ul>

@@ -25,7 +25,7 @@ export default function App() {
   return (
     <AppProvider>
       <Intro />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<DashboardPage />} />

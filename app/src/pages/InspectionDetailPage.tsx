@@ -41,7 +41,7 @@ export function InspectionDetailPage() {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
         {[
           ['Inspected', insp.inspectedQuantity],
           ['Accepted', insp.acceptedQuantity],
@@ -49,7 +49,7 @@ export function InspectionDetailPage() {
           ['Rejection rate', `${rate}%`],
         ].map(([k, v]) => (
           <div key={k} className="st-card p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{k}</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">{k}</p>
             <p className="mt-1 text-2xl font-semibold tabular-nums">{v}</p>
           </div>
         ))}
@@ -58,7 +58,7 @@ export function InspectionDetailPage() {
         <Progress value={insp.acceptedQuantity} max={insp.inspectedQuantity} tone={insp.outcome === 'Failed' ? 'rose' : 'teal'} label="Accepted share of inspected units" />
       )}
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <section className="st-card p-5" aria-labelledby="df-h">
           <h2 id="df-h" className="mb-3 text-lg font-semibold">
             Defects
@@ -70,7 +70,7 @@ export function InspectionDetailPage() {
               {insp.defects.map((d) => (
                 <li key={d.defectId} className="rounded-xl bg-slate-50 p-3 text-sm">
                   <p className="font-semibold">
-                    {d.category} <span className="font-normal text-slate-500">× {d.quantity}</span>
+                    {d.category} <span className="font-normal text-slate-600">× {d.quantity}</span>
                   </p>
                   {d.description && <p className="text-slate-600">{d.description}</p>}
                 </li>
@@ -105,7 +105,7 @@ export function InspectionDetailPage() {
                 <li key={a.approvalId} className="rounded-xl bg-slate-50 p-3 text-sm">
                   <p className="font-semibold">{a.decision}</p>
                   <p className="text-slate-600">{a.comments || 'No comment'}</p>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-slate-600">
                     {who(a.approverId)} · {formatDate(a.decidedAt)}
                   </p>
                 </li>

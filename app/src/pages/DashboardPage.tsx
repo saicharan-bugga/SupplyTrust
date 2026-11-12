@@ -26,7 +26,7 @@ function Panel({ title, id, icon, action, delay = 0, children }: { title: string
 }
 
 function Empty({ children }: { children: ReactNode }) {
-  return <p className="rounded-xl bg-slate-50 px-4 py-6 text-center text-sm text-slate-500">{children}</p>
+  return <p className="rounded-xl bg-slate-50 px-4 py-6 text-center text-sm text-slate-600">{children}</p>
 }
 
 function Donut({ percent, color }: { percent: number; color: string }) {
@@ -103,7 +103,7 @@ export function DashboardPage() {
             </div>
           </div>
 
-          <dl className="grid grid-cols-3 gap-3 sm:gap-4">
+          <dl className="grid grid-cols-1 gap-3 min-[460px]:grid-cols-3 sm:gap-4">
             {[
               ['Active value', formatMoney(stats.totalValue)],
               ['On-time rate', `${onTime}%`],
@@ -120,14 +120,14 @@ export function DashboardPage() {
 
       <TaskPanel />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <DashboardCard delay={0.05} title="Total orders" value={stats.totalOrders} icon={<ClipboardList size={20} aria-hidden />} hint={`${formatMoney(stats.totalValue)} active value`} />
         <DashboardCard delay={0.1} title="Pending approvals" value={stats.pendingApprovals} tone="warning" icon={<Hourglass size={20} aria-hidden />} hint={stats.pendingApprovals ? 'Awaiting a decision' : 'Queue is clear'} />
         <DashboardCard delay={0.15} title="Delayed orders" value={stats.delayedOrders} tone="danger" icon={<AlertTriangle size={20} aria-hidden />} hint={stats.delayedOrders ? 'Past expected delivery' : 'Nothing overdue'} />
         <DashboardCard delay={0.2} title="Inspection failures" value={stats.inspectionFailures} tone="danger" icon={<ShieldX size={20} aria-hidden />} hint={stats.inspectionFailures ? 'Needs follow-up' : 'No failures'} />
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Panel title="Order pipeline" id="pipeline-h" delay={0.25}>
             {breakdown.length === 0 ? (
@@ -167,20 +167,20 @@ export function DashboardPage() {
                 <Donut percent={passRate} color={passRate >= 90 ? '#10b981' : passRate >= 75 ? '#f59e0b' : '#f43f5e'} />
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-3xl font-semibold tabular-nums">{passRate}%</span>
-                  <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400">accepted</span>
+                  <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-600">accepted</span>
                 </div>
               </div>
               <dl className="space-y-2 text-sm">
                 <div>
-                  <dt className="text-slate-500">Inspected</dt>
+                  <dt className="text-slate-600">Inspected</dt>
                   <dd className="font-semibold tabular-nums">{inspected.toLocaleString('en-IN')} units</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-500">Accepted</dt>
+                  <dt className="text-slate-600">Accepted</dt>
                   <dd className="font-semibold tabular-nums text-emerald-700">{accepted.toLocaleString('en-IN')}</dd>
                 </div>
                 <div>
-                  <dt className="text-slate-500">Rejected</dt>
+                  <dt className="text-slate-600">Rejected</dt>
                   <dd className="font-semibold tabular-nums text-rose-700">{inspections.reduce((s, i) => s + i.rejectedQuantity, 0).toLocaleString('en-IN')}</dd>
                 </div>
               </dl>
@@ -189,7 +189,7 @@ export function DashboardPage() {
         </Panel>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Panel title="Spend by vendor" id="spend-h" delay={0.35}>
           {spend.length === 0 ? (
             <Empty>No vendor spend yet.</Empty>
@@ -203,7 +203,7 @@ export function DashboardPage() {
                       {s.name}
                     </span>
                     <span className="tabular-nums text-slate-600">
-                      {formatMoney(s.value)} <span className="text-xs text-slate-400">· {s.orders} PO</span>
+                      {formatMoney(s.value)} <span className="text-xs text-slate-600">· {s.orders} PO</span>
                     </span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-slate-100">
@@ -237,9 +237,9 @@ export function DashboardPage() {
                       <Link to={`/orders/${o.orderId}`} className="text-sm font-semibold text-teal-800 hover:underline">
                         {o.orderId}
                       </Link>
-                      <p className="truncate text-xs text-slate-500">{vendorName(o.vendorId)}</p>
+                      <p className="truncate text-xs text-slate-600">{vendorName(o.vendorId)}</p>
                     </div>
-                    <span className="text-xs font-semibold text-slate-500">{d === 0 ? 'Today' : d === 1 ? 'Tomorrow' : `In ${d} days`}</span>
+                    <span className="text-xs font-semibold text-slate-600">{d === 0 ? 'Today' : d === 1 ? 'Tomorrow' : `In ${d} days`}</span>
                   </li>
                 )
               })}
@@ -248,7 +248,7 @@ export function DashboardPage() {
         </Panel>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Panel title="Delayed orders" id="delayed-h" icon={<AlertTriangle size={16} aria-hidden />} delay={0.45}>
           {delayed.length === 0 ? (
             <Empty>No delayed orders right now.</Empty>
@@ -282,7 +282,7 @@ export function DashboardPage() {
                     <Link to={`/orders/${o.orderId}`} className="font-semibold text-teal-800 hover:underline">
                       {o.orderId}
                     </Link>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-600">
                       {vendorName(o.vendorId)} · {formatMoney(orderTotal(o))}
                     </p>
                   </div>
@@ -308,7 +308,7 @@ export function DashboardPage() {
                   </Link>{' '}
                   {a.previousStatus ? `moved from ${a.previousStatus} to` : 'was created as'} <strong>{a.newStatus}</strong>
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-600">
                   {a.who} · {formatDate(a.changedAt)}
                 </p>
               </li>

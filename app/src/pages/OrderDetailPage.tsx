@@ -132,7 +132,7 @@ export function OrderDetailPage() {
         </form>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Summary label="Order value" value={formatMoney(orderTotal(order))} />
         <Summary label="Expected delivery" value={formatDate(order.expectedDeliveryDate)} note={isDelayed(order) ? `${delayDays(order)} days overdue` : undefined} />
         <Summary label="Received" value={String(received)} />
@@ -144,7 +144,7 @@ export function OrderDetailPage() {
           Items
         </h2>
         <table className="mt-2 min-w-full text-sm">
-          <thead className="bg-slate-50/80 text-left text-slate-500">
+          <thead className="bg-slate-50/80 text-left text-slate-600">
             <tr>
               <th scope="col" className="px-5 py-2.5 font-semibold">Product</th>
               <th scope="col" className="px-5 py-2.5 font-semibold">SKU</th>
@@ -167,7 +167,7 @@ export function OrderDetailPage() {
         </table>
       </section>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <section className="st-card p-5" aria-labelledby="hist-h">
           <h2 id="hist-h" className="mb-4 text-lg font-semibold">
             Status history
@@ -186,7 +186,7 @@ export function OrderDetailPage() {
                 <li key={i.inspectionId} className="rounded-xl bg-slate-50 p-3 text-sm">
                   <div className="flex items-center justify-between gap-2">
                     <OrderStatusBadge status={i.outcome} />
-                    <span className="text-xs text-slate-500">{formatDate(i.inspectedAt)}</span>
+                    <span className="text-xs text-slate-600">{formatDate(i.inspectedAt)}</span>
                   </div>
                   <p className="mt-2 text-slate-600">
                     Inspected {i.inspectedQuantity} · accepted {i.acceptedQuantity} · rejected {i.rejectedQuantity}
@@ -219,7 +219,7 @@ export function OrderDetailPage() {
 function Summary({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
     <div className="st-card p-4">
-      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">{label}</p>
       <p className="mt-1 text-2xl font-semibold tabular-nums text-slate-900">{value}</p>
       {note && <p className="mt-1 text-xs font-medium text-rose-700">{note}</p>}
     </div>

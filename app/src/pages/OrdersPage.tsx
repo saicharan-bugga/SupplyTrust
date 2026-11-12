@@ -69,7 +69,7 @@ export function OrdersPage() {
       <div className="st-rise flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Purchase orders</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-600">
             {filtered.length} {filtered.length === 1 ? 'order' : 'orders'} · {formatMoney(filteredValue)} total value
           </p>
         </div>
@@ -156,7 +156,7 @@ export function OrdersPage() {
 function EmptyState({ text, action = false }: { text: string; action?: boolean }) {
   return (
     <div className="st-card flex flex-col items-center gap-3 p-10 text-center text-slate-600">
-      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-600">
         <Inbox size={22} aria-hidden />
       </span>
       <p>{text}</p>

@@ -34,10 +34,10 @@ export function GoodsReceiptForm({ data, order, onSubmit, onCancel }: GoodsRecei
     >
       <div className="space-y-3">
         {order.items.map((i) => (
-          <div key={i.itemId} className="grid items-center gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_auto_9rem]">
+          <div key={i.itemId} className="grid grid-cols-1 items-center gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_auto_9rem]">
             <div>
               <p className="text-sm font-medium text-slate-900">{i.productName}</p>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-600">
                 {i.sku} · ordered {i.orderedQuantity}
               </p>
             </div>

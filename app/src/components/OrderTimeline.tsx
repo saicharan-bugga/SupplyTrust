@@ -28,7 +28,7 @@ export function OrderTimeline({ history, users }: OrderTimelineProps) {
             )}
             <OrderStatusBadge status={h.newStatus} />
           </div>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-slate-600">
             {formatDate(h.changedAt)} by {who(h.changedBy)}
           </p>
         </li>

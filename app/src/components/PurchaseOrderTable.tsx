@@ -65,7 +65,7 @@ export function PurchaseOrderTable({ orders, vendors, sort, onSortChange }: Purc
                     key={c.key}
                     scope="col"
                     aria-sort={active ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'}
-                    className="st-th px-5 py-3.5 text-left font-semibold text-slate-500"
+                    className="st-th px-5 py-3.5 text-left font-semibold text-slate-600"
                   >
                     <button type="button" onClick={() => onSortChange(c.key)} className="inline-flex items-center gap-1 hover:text-brand-700">
                       {c.label}

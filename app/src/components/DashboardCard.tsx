@@ -32,14 +32,14 @@ export function DashboardCard({ title, value, hint, icon, tone = 'default', dela
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-slate-500">{title}</p>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-slate-600">{title}</p>
           <p className="mt-2 text-4xl font-semibold tracking-tight text-slate-900 tabular-nums">{value}</p>
         </div>
         {icon && (
           <span className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-lg ${ICON[tone]}`}>{icon}</span>
         )}
       </div>
-      {hint && <p className="mt-3 text-xs font-medium text-slate-500">{hint}</p>}
+      {hint && <p className="mt-3 text-xs font-medium text-slate-600">{hint}</p>}
     </section>
   )
 }

@@ -57,7 +57,7 @@ export function ReportsPage() {
         }
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           ['Orders', String(data.orders.length)],
           ['Active order value', formatMoney(data.orders.filter((o) => o.status !== 'Cancelled').reduce((s, o) => s + o.items.reduce((t, i) => t + i.orderedQuantity * i.unitPrice, 0), 0))],
@@ -65,13 +65,13 @@ export function ReportsPage() {
           ['Overall rejection rate', `${(rate * 100).toFixed(1)}%`],
         ].map(([k, v]) => (
           <div key={k} className="st-card p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{k}</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">{k}</p>
             <p className="mt-1 text-2xl font-semibold tabular-nums">{v}</p>
           </div>
         ))}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <section className="st-card p-5" aria-labelledby="c1">
           <h2 id="c1" className="mb-3 text-lg font-semibold">
             Orders by status
@@ -115,9 +115,9 @@ export function ReportsPage() {
         <h2 id="vp" className="px-5 pt-5 text-lg font-semibold">
           Vendor performance
         </h2>
-        <p className="px-5 text-sm text-slate-500">Score = 50% on-time delivery + 50% quality (1 − rejection rate).</p>
+        <p className="px-5 text-sm text-slate-600">Score = 50% on-time delivery + 50% quality (1 − rejection rate).</p>
         <table className="mt-3 min-w-full text-sm">
-          <thead className="bg-slate-50/80 text-left text-slate-500">
+          <thead className="bg-slate-50/80 text-left text-slate-600">
             <tr>
               {['Vendor', 'Orders', 'Value', 'On-time', 'Rejection', 'Score'].map((h) => (
                 <th key={h} scope="col" className="px-5 py-2.5 font-semibold">

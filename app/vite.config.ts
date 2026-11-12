@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  // GitHub Pages serves the site from /<repo>/, set VITE_BASE=/SupplyTrust/ when building for it.
+  base: process.env.VITE_BASE ?? '/',
   plugins: [react(), tailwindcss()],
   test: {
     environment: 'jsdom',

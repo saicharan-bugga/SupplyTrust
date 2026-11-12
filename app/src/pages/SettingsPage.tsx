@@ -9,7 +9,7 @@ export function SettingsPage() {
       <section className="st-card st-rise flex flex-wrap items-center justify-between gap-4 p-6">
         <div>
           <h2 className="font-semibold text-slate-900">Demo data</h2>
-          <p className="mt-1 max-w-lg text-sm text-slate-500">Reset all vendors, orders and inspections back to the original sample data.</p>
+          <p className="mt-1 max-w-lg text-sm text-slate-600">Reset all vendors, orders and inspections back to the original sample data.</p>
         </div>
         <button
           type="button"

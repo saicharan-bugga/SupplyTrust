@@ -72,7 +72,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
       className="mx-auto mt-[12vh] w-[calc(100%-2rem)] max-w-xl overflow-hidden rounded-2xl p-0 shadow-2xl backdrop:bg-slate-950/50 backdrop:backdrop-blur-sm"
     >
       <div className="flex items-center gap-3 border-b border-slate-100 px-4">
-        <Search size={18} aria-hidden className="text-slate-400" />
+        <Search size={18} aria-hidden className="text-slate-600" />
         <input
           ref={inputRef}
           value={q}
@@ -97,12 +97,12 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
           aria-controls="cmd-list"
           aria-label="Search pages, orders and vendors"
           placeholder="Jump to a page, order or vendor…"
-          className="w-full bg-transparent py-4 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+          className="w-full bg-transparent py-4 text-sm text-slate-900 outline-none placeholder:text-slate-600"
         />
-        <kbd className="rounded-md bg-slate-100 px-1.5 py-0.5 text-[0.65rem] font-semibold text-slate-500">Esc</kbd>
+        <kbd className="rounded-md bg-slate-100 px-1.5 py-0.5 text-[0.65rem] font-semibold text-slate-600">Esc</kbd>
       </div>
       <ul id="cmd-list" role="listbox" className="max-h-80 overflow-y-auto p-2">
-        {results.length === 0 && <li className="px-3 py-8 text-center text-sm text-slate-500">Nothing matches “{q}”.</li>}
+        {results.length === 0 && <li className="px-3 py-8 text-center text-sm text-slate-600">Nothing matches “{q}”.</li>}
         {results.map((r, n) => {
           const Icon = ICON[r.kind]
           return (
@@ -110,7 +110,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
               <button type="button" onMouseEnter={() => setActive(n)} onClick={() => go(r)} className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm ${n === active ? 'bg-teal-50 text-teal-900' : 'text-slate-700'}`}>
                 <Icon size={16} aria-hidden className="shrink-0 text-teal-700" />
                 <span className="font-medium">{r.label}</span>
-                <span className="min-w-0 flex-1 truncate text-xs text-slate-500">{r.hint}</span>
+                <span className="min-w-0 flex-1 truncate text-xs text-slate-600">{r.hint}</span>
                 {n === active && <CornerDownLeft size={14} aria-hidden className="text-teal-700" />}
               </button>
             </li>
