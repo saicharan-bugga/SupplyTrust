@@ -11,6 +11,7 @@ import { InspectionsPage } from '../pages/InspectionsPage'
 import { OrderDetailPage } from '../pages/OrderDetailPage'
 import { OrderFormPage } from '../pages/OrderFormPage'
 import { OrdersPage } from '../pages/OrdersPage'
+import { ProfilePage } from '../pages/ProfilePage'
 import { ReceiptsPage } from '../pages/ReceiptsPage'
 import { VendorsPage } from '../pages/VendorsPage'
 
@@ -26,6 +27,7 @@ const PAGES: [string, string][] = [
   ['/inspections', 'inspections'],
   ['/approvals', 'approval queue'],
   ['/audit', 'audit log'],
+  ['/profile', 'profile'],
 ]
 
 function Shell({ path }: { path: string }) {
@@ -43,6 +45,7 @@ function Shell({ path }: { path: string }) {
             <Route path="inspections" element={<InspectionsPage />} />
             <Route path="approvals" element={<ApprovalsPage />} />
             <Route path="audit" element={<AuditPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </AppProvider>

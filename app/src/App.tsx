@@ -10,6 +10,7 @@ import { OrderDetailPage } from './pages/OrderDetailPage'
 import { OrderFormPage } from './pages/OrderFormPage'
 import { OrdersPage } from './pages/OrdersPage'
 import { PlaceholderPage } from './pages/PlaceholderPage'
+import { ProfilePage } from './pages/ProfilePage'
 import { ReceiptsPage } from './pages/ReceiptsPage'
 import { ReportsPage } from './pages/ReportsPage'
 import { SettingsPage } from './pages/SettingsPage'
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="approvals" element={<ApprovalsPage />} />
             <Route path="reports" element={<ReportsPage />} />
             <Route path="audit" element={<AuditPage />} />
+            <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="*" element={<PlaceholderPage title="Page not found" week={1} />} />
           </Route>

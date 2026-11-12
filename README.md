@@ -42,7 +42,7 @@ No login needed: pick a role from the top bar (Procurement Officer, Manager, Ven
 | **Cinematic, classic intro** | Four hand-built navy-and-gold intro sequences (curtains, seal, counter, spotlight); a different one every visit |
 | **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
 | **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
-| **Built to be trusted** | 82 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
+| **Built to be trusted** | 86 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
 
 ## Overview
 
@@ -100,6 +100,10 @@ Procurement officers often manage purchase orders, vendor communication, deliver
 |---|---|---|
 | <img src="docs/screenshots/week3-order-details.png" alt="Order details with progress tracker" /> | <img src="docs/screenshots/week3-receipts.png" alt="Goods receipt" /> | <img src="docs/screenshots/week3-inspection-details.png" alt="Inspection details" /> |
 
+### Profile
+
+<img src="docs/screenshots/profile.png" alt="Profile page" width="700" />
+
 ### Tablet and phone
 
 | Tablet - dashboard | Phone - dashboard | Phone - orders |
@@ -142,6 +146,7 @@ Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wi
 - Reports and analytics: charts (status, spend, defects), vendor performance scorecard, CSV export and print / PDF
 - Audit log of every status change, receipt, inspection, decision and date update, searchable and exportable
 - Command palette (Ctrl + K) to jump to any page, order or vendor; dark theme toggle
+- Profile page (click your avatar): basic details, what your role can do, your recent activity, editable display name, theme and demo-user switch
 - Unauthorised actions are blocked in both the UI and the logic layer
 
 **Coming next**

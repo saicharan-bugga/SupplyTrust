@@ -160,12 +160,17 @@ export function AppLayout() {
           </ul>
         </nav>
 
-        <div className={`m-3 rounded-2xl bg-white/5 ring-1 ring-white/10 ${open ? 'p-3' : 'flex justify-center p-2'}`}>
+        <NavLink
+          to="/profile"
+          aria-label={`Open my profile, ${currentUser.name}`}
+          title={open ? undefined : `${currentUser.name} - ${ROLE_LABELS[currentUser.role]}`}
+          onClick={() => window.matchMedia('(max-width: 1023px)').matches && setOpen(false)}
+          className={({ isActive }) =>
+            `m-3 block rounded-2xl ring-1 transition hover:bg-white/10 ${isActive ? 'bg-white/10 ring-amber-300/50' : 'bg-white/5 ring-white/10'} ${open ? 'p-3' : 'flex justify-center p-2'}`
+          }
+        >
           <div className="flex items-center gap-3">
-            <span
-              title={open ? undefined : `${currentUser.name} - ${ROLE_LABELS[currentUser.role]}`}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-200 to-amber-500 text-sm font-bold text-amber-950"
-            >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-200 to-amber-500 text-sm font-bold text-amber-950">
               {initials(currentUser.name)}
             </span>
             {open && (
@@ -175,7 +180,7 @@ export function AppLayout() {
               </div>
             )}
           </div>
-        </div>
+        </NavLink>
       </aside>
       {open && <div className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm lg:hidden" onClick={() => setOpen(false)} aria-hidden />}
 
@@ -183,7 +188,7 @@ export function AppLayout() {
         <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-slate-900/5 bg-white/75 px-4 backdrop-blur-xl sm:px-6">
           <div className="hidden min-w-0 md:block">
             <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-slate-600">SupplyTrust</p>
-            <p className="truncate text-sm font-semibold text-slate-800">{current?.label ?? 'Workspace'}</p>
+            <p className="truncate text-sm font-semibold text-slate-800">{current?.label ?? (pathname.startsWith('/profile') ? 'My Profile' : 'Workspace')}</p>
           </div>
 
           <form

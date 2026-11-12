@@ -41,3 +41,18 @@ export const NAV_ITEMS: NavItem[] = [
   { to: '/audit', label: 'Audit Log', roles: ['procurement_officer', 'procurement_manager'] },
   { to: '/settings', label: 'Settings', roles: ALL },
 ]
+
+export const PERMISSION_LABELS: Record<Permission, string> = {
+  'order.create': 'Create purchase orders',
+  'order.edit': 'Edit draft and pending orders',
+  'order.cancel': 'Cancel orders',
+  'order.updateFulfillment': 'Update delivery dates on own orders',
+  'receipt.record': 'Record goods receipts',
+  'inspection.record': 'Record quality inspections',
+  'inspection.decide': 'Approve, reject or request reinspection',
+  'vendor.manage': 'Add and manage vendors',
+  'reports.view': 'View reports and analytics',
+  'audit.view': 'View the audit log',
+}
+
+export const permissionsFor = (role: Role): Permission[] => MATRIX[role]
