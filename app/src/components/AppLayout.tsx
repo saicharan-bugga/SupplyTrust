@@ -81,7 +81,7 @@ export function AppLayout() {
       {/* Spacer keeps the icon rail's width in the layout; the real sidebar is fixed on top. */}
       <div className={`w-[72px] shrink-0 transition-[width] duration-300 ${open ? 'lg:w-64' : ''}`} aria-hidden />
       <aside
-        className={`st-sidebar fixed inset-y-0 left-0 z-40 flex flex-col overflow-hidden bg-[#081d23] text-slate-100 transition-[width] duration-300 ${
+        className={`st-sidebar fixed inset-y-0 left-0 z-40 flex flex-col overflow-hidden bg-[#0a1a30] text-slate-100 transition-[width] duration-300 ${
           open ? 'w-64' : 'w-[72px]'
         }`}
       >
@@ -130,7 +130,7 @@ export function AppLayout() {
                   >
                     <span className="relative flex shrink-0">
                       <Icon size={20} aria-hidden className="st-nav-icon" />
-                      {!open && count > 0 && <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-amber-400 ring-2 ring-[#081d23]" aria-hidden />}
+                      {!open && count > 0 && <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-amber-400 ring-2 ring-[#0a1a30]" aria-hidden />}
                     </span>
                     <span className={open ? 'flex-1 whitespace-nowrap' : 'sr-only'}>{n.label}</span>
                     {open && count > 0 && (

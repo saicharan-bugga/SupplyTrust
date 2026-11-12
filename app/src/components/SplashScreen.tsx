@@ -119,12 +119,12 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
               {variant === 1 && (
                 <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 100 100" aria-hidden>
                   <circle cx="50" cy="50" r="48" fill="none" stroke="url(#sp-gold)" strokeWidth="0.8" className="sp-ring" pathLength={1} />
-                  <circle cx="50" cy="50" r="45" fill="none" stroke="#fbbf24" strokeOpacity="0.35" strokeWidth="0.4" strokeDasharray="1 2" className="sp-ring sp-ring-2" pathLength={1} />
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" strokeOpacity="0.35" strokeWidth="0.4" strokeDasharray="1 2" className="sp-ring sp-ring-2" pathLength={1} />
                   <defs>
                     <linearGradient id="sp-gold" x1="0" y1="0" x2="1" y2="1">
-                      <stop stopColor="#fff3b0" />
-                      <stop offset="0.5" stopColor="#fbbf24" />
-                      <stop offset="1" stopColor="#d97706" />
+                      <stop stopColor="#f6e8b1" />
+                      <stop offset="0.5" stopColor="#d4af37" />
+                      <stop offset="1" stopColor="#9a7424" />
                     </linearGradient>
                   </defs>
                 </svg>

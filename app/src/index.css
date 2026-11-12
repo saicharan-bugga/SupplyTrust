@@ -2,35 +2,67 @@
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  /* Teal brand scale */
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-500: #0d9488;
-  --color-brand-600: #0f766e;
-  --color-brand-700: #115e59;
-  /* Deep ink for navigation and splash */
-  --color-ink-800: #11323a;
-  --color-ink-900: #0a2229;
-  --color-ink-950: #061519;
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  /* Classic navy scale: replaces Tailwind's teal everywhere it is used */
+  --color-teal-50: #eef3fa;
+  --color-teal-100: #dbe6f4;
+  --color-teal-200: #b9cce6;
+  --color-teal-300: #8eaad2;
+  --color-teal-400: #5f82b5;
+  --color-teal-500: #3b5f96;
+  --color-teal-600: #1f4478;
+  --color-teal-700: #17365f;
+  --color-teal-800: #102a4c;
+  --color-teal-900: #0b1f3a;
+  --color-teal-950: #06142a;
+  --color-brand-50: #eef3fa;
+  --color-brand-100: #dbe6f4;
+  --color-brand-500: #3b5f96;
+  --color-brand-600: #1f4478;
+  --color-brand-700: #17365f;
+  /* Deep navy ink for navigation and splash */
+  --color-ink-800: #12294a;
+  --color-ink-900: #0a1a30;
+  --color-ink-950: #050e1d;
 }
 
 body {
   margin: 0;
-  background: #f3f5f1;
-  color: #10242b;
+  background: #f6f3ec;
+  color: #0f1c33;
   font-family: var(--font-sans);
 }
 
+h1, h2.st-serif, .st-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.005em;
+}
+h1 {
+  font-weight: 700;
+  font-size: 2.35rem;
+  line-height: 1.1;
+}
+h1::after {
+  content: '';
+  display: block;
+  width: 3.2rem;
+  height: 3px;
+  margin-top: 0.55rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c9a24d, #e8cf8a);
+}
+.st-hero h1::after { background: linear-gradient(90deg, #e8cf8a, rgba(232, 207, 138, 0)); }
+
 :focus-visible {
-  outline: 2px solid #f59e0b;
+  outline: 2px solid #b8902c;
   outline-offset: 2px;
 }
 
 /* ---------- Splash screen ---------- */
 .st-splash {
   background:
-    radial-gradient(60rem 40rem at 50% 38%, rgba(20, 184, 166, 0.28), transparent 60%),
-    linear-gradient(160deg, var(--color-ink-950), var(--color-ink-900) 55%, #0c3a3f);
+    radial-gradient(60rem 40rem at 50% 38%, rgba(95, 130, 181, 0.28), transparent 60%),
+    linear-gradient(160deg, var(--color-ink-950), var(--color-ink-900) 55%, #12305a);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .st-splash-out {
@@ -51,7 +83,7 @@ body {
   }
 }
 .st-gold-text {
-  background: linear-gradient(100deg, #fff3b0 0%, #fbbf24 35%, #d97706 60%, #fde68a 100%);
+  background: linear-gradient(100deg, #f6e8b1 0%, #d4af37 35%, #9a7424 60%, #ecd58a 100%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -84,15 +116,15 @@ body {
   position: absolute;
   inset: -14px;
   border-radius: 9999px;
-  border: 1px solid rgba(251, 191, 36, 0.35);
-  border-top-color: rgba(253, 230, 138, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-top-color: rgba(236, 213, 138, 0.95);
   border-right-color: transparent;
   animation: st-spin 3.2s linear infinite;
 }
 .st-orbit-2 {
   inset: -26px;
-  border-color: rgba(45, 212, 191, 0.25);
-  border-bottom-color: rgba(94, 234, 212, 0.85);
+  border-color: rgba(142, 170, 210, 0.25);
+  border-bottom-color: rgba(157, 185, 222, 0.85);
   border-top-color: transparent;
   animation-duration: 5s;
   animation-direction: reverse;
@@ -135,7 +167,7 @@ body {
 }
 @keyframes st-glow {
   50% {
-    filter: drop-shadow(0 0 22px rgba(45, 212, 191, 0.55));
+    filter: drop-shadow(0 0 22px rgba(142, 170, 210, 0.55));
   }
 }
 
@@ -176,13 +208,13 @@ body {
 
 .st-route {
   fill: none;
-  stroke: #5eead4;
+  stroke: #9db9de;
   stroke-width: 2;
   stroke-dasharray: 6 10;
   animation: st-dash 2.4s linear infinite;
 }
 .st-route-2 {
-  stroke: #fbbf24;
+  stroke: #d4af37;
   animation-duration: 3.2s;
 }
 @keyframes st-dash {
@@ -191,7 +223,7 @@ body {
   }
 }
 .st-node {
-  fill: #fbbf24;
+  fill: #d4af37;
   opacity: 0;
   animation: st-node 0.5s ease forwards;
 }
@@ -210,3 +242,12 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+}
+
+.sp h1::after { display: none; }

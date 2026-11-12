@@ -39,7 +39,7 @@ No login needed: pick a role from the top bar (Procurement Officer, Manager, Ven
 | | |
 |---|---|
 | **Executive dashboard** | Welcome banner, KPI cards, order pipeline, quality ring, spend by vendor, upcoming deliveries, delayed and pending lists and a live activity timeline |
-| **Cinematic, classic intro** | Four hand-built gold-and-teal intro sequences (curtains, seal, counter, spotlight); a different one every visit |
+| **Cinematic, classic intro** | Four hand-built navy-and-gold intro sequences (curtains, seal, counter, spotlight); a different one every visit |
 | **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
 | **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
 | **Built to be trusted** | 82 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
@@ -249,7 +249,7 @@ Order status flow: `Draft -> Pending Approval -> Approved -> Ordered -> Partiall
 | Deployment | **GitHub Pages** (live demo, `gh-pages` branch), hosting service for the REST API when built |
 | Stretch features | PWA offline mode, customisable dashboards, Framer Motion, PDF/CSV export, automated performance monitoring |
 
-Design system: deep teal and ink surfaces with gold accents, Cormorant Garamond for brand moments and Inter for the interface, soft layered shadows and distinct semantic colours for approved, pending, delayed, rejected and cancelled states. Accessibility targets WCAG 2.2 AA.
+Design system: a classic navy and antique-gold palette on an ivory background, a heraldic shield crest logo, Cormorant Garamond serif headings and Inter for the interface, soft layered shadows and distinct semantic colours for approved, pending, delayed, rejected and cancelled states. Accessibility targets WCAG 2.2 AA.
 
 ## Getting started
 
@@ -314,7 +314,7 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Wireframes for all major screens - [`docs/wireframes.md`](docs/wireframes.md)
 - [x] Git repository with documented folder structure - [`docs/architecture.md`](docs/architecture.md)
 - [x] React + Vite + TypeScript setup
-- [x] Tailwind design system (teal / amber theme, accessible status badges)
+- [x] Tailwind design system (navy / gold theme, accessible status badges)
 - [x] Routing with role-based navigation
 - [x] Reusable component library with typed props and tests - **28 tests, 93.5% statement coverage** of `src/components` and `src/lib` (the documented coverage scope, set in `app/vite.config.ts`)
 - [x] Responsive dashboard shell checked at phone, tablet and laptop widths

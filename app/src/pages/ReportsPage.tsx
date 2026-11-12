@@ -10,7 +10,7 @@ import { useApp } from '../state/AppContext'
 
 ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
-const TEAL = '#0f766e'
+const TEAL = '#1f4478'
 const AMBER = '#f59e0b'
 
 export function ReportsPage() {

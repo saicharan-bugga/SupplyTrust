@@ -6,7 +6,7 @@ export const STATUS_COLORS: Record<OrderStatus, string> = {
   'Pending Approval': '#f59e0b',
   Approved: '#10b981',
   Ordered: '#0ea5e9',
-  'Partially Received': '#14b8a6',
+  'Partially Received': '#5f82b5',
   Received: '#16a34a',
   Cancelled: '#f43f5e',
 }
