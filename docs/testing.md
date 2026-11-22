@@ -40,7 +40,14 @@ Measured in a 390 px wide frame (iPhone-class) for dashboard, orders, order deta
 | Load event | 380 ms | same |
 | JavaScript | ~147 KB gzip, CSS ~11 KB gzip | `npm run build` |
 
-**Lighthouse was not obtained.** Lighthouse could not run on this machine (it reported "page did not paint" in headless Edge, and Chrome is not installed). The Lighthouse Performance above 90 and First Contentful Paint under 1.2 s targets are therefore **unverified**. To measure: open the deployed site in Chrome, DevTools > Lighthouse > Desktop, and record the result with the same conditions.
+**Lighthouse (measured 2026-11-22)** with Lighthouse 13.6 driving headless Microsoft Edge against the deployed site (`https://saicharan-bugga.github.io/SupplyTrust/`), on the development laptop:
+
+| Preset | Performance | Accessibility | Best practices | SEO | FCP | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|---|
+| Desktop | **99** | **100** | **100** | **100** | 0.3 s | 1.0 s | 50 ms | 0 |
+| Mobile (simulated 4x CPU and slow 4G) | 53 to 86 | 100 | 100 | 100 | 0.8 to 2.1 s | 3.4 to 3.9 s | 0.1 to 4 s | 0.003 |
+
+The desktop result meets the Performance above 90 target. Mobile performance was **not** reliably above 90: repeated runs on the same build varied from 53 to 86 because the simulated CPU throttling is very sensitive to other load on this machine, so only the range is reported. The mobile FCP target of 1.2 s was met in some runs and missed in others. Accessibility, best-practices and SEO were stable at 100 after labelling the demo-user selector and adding a meta description. The main script bundle was reduced from about 718 KB to about 316 KB by lazy-loading each page.
 
 ## Critical-path manual checks
 

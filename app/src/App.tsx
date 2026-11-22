@@ -1,21 +1,22 @@
+import { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './components/AppLayout'
 import { SplashScreen } from './components/SplashScreen'
-import { ApprovalsPage } from './pages/ApprovalsPage'
-import { AuditPage } from './pages/AuditPage'
+const ApprovalsPage = lazy(() => import('./pages/ApprovalsPage').then((m) => ({ default: m.ApprovalsPage })))
+const AuditPage = lazy(() => import('./pages/AuditPage').then((m) => ({ default: m.AuditPage })))
 import { DashboardPage } from './pages/DashboardPage'
-import { InspectionDetailPage } from './pages/InspectionDetailPage'
-import { InspectionsPage } from './pages/InspectionsPage'
-import { OrderDetailPage } from './pages/OrderDetailPage'
-import { OrderFormPage } from './pages/OrderFormPage'
-import { OrdersPage } from './pages/OrdersPage'
+const InspectionDetailPage = lazy(() => import('./pages/InspectionDetailPage').then((m) => ({ default: m.InspectionDetailPage })))
+const InspectionsPage = lazy(() => import('./pages/InspectionsPage').then((m) => ({ default: m.InspectionsPage })))
+const OrderDetailPage = lazy(() => import('./pages/OrderDetailPage').then((m) => ({ default: m.OrderDetailPage })))
+const OrderFormPage = lazy(() => import('./pages/OrderFormPage').then((m) => ({ default: m.OrderFormPage })))
+const OrdersPage = lazy(() => import('./pages/OrdersPage').then((m) => ({ default: m.OrdersPage })))
 import { PlaceholderPage } from './pages/PlaceholderPage'
-import { ProfilePage } from './pages/ProfilePage'
-import { ReceiptsPage } from './pages/ReceiptsPage'
-import { ReportsPage } from './pages/ReportsPage'
-import { SettingsPage } from './pages/SettingsPage'
-import { VendorPortalPage } from './pages/VendorPortalPage'
-import { VendorsPage } from './pages/VendorsPage'
+const ProfilePage = lazy(() => import('./pages/ProfilePage').then((m) => ({ default: m.ProfilePage })))
+const ReceiptsPage = lazy(() => import('./pages/ReceiptsPage').then((m) => ({ default: m.ReceiptsPage })))
+const ReportsPage = lazy(() => import('./pages/ReportsPage').then((m) => ({ default: m.ReportsPage })))
+const SettingsPage = lazy(() => import('./pages/SettingsPage').then((m) => ({ default: m.SettingsPage })))
+const VendorPortalPage = lazy(() => import('./pages/VendorPortalPage').then((m) => ({ default: m.VendorPortalPage })))
+const VendorsPage = lazy(() => import('./pages/VendorsPage').then((m) => ({ default: m.VendorsPage })))
 import { AppProvider, useApp } from './state/AppContext'
 
 function Intro() {
@@ -28,6 +29,7 @@ export default function App() {
     <AppProvider>
       <Intro />
       <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+        <Suspense fallback={<p role="status" className="p-8 text-sm text-slate-600">Loading…</p>}>
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<DashboardPage />} />
@@ -48,6 +50,7 @@ export default function App() {
             <Route path="*" element={<PlaceholderPage title="Page not found" week={1} />} />
           </Route>
         </Routes>
+        </Suspense>
       </BrowserRouter>
     </AppProvider>
   )

@@ -131,6 +131,7 @@ Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wi
 - Purchase order list with search, quick status chips, sortable columns, pagination and CSV export
 - Status badges that use an icon and text, not colour alone
 - Vendors see only their own orders
+- Installable PWA: web manifest, icons and a service worker so the app can be installed and opened offline (previously visited pages)
 - Vendor Portal (`/vendor-portal`, vendor role only): own orders with delivery progress, quality feedback, delivery-date updates, status chart, performance score and CSV / print export
 - Shared `AnalyticsChart` and `ExportMenu` components used by Reports and the Vendor Portal
 - Derived metrics (order value, delay, outstanding quantity, rejection rate) calculated from records
@@ -351,7 +352,7 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Deployed: https://saicharan-bugga.github.io/SupplyTrust/
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
-- [ ] Lighthouse report (needs Chrome; see testing report)
+- [x] Lighthouse measured on the live site: desktop 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO); mobile performance 53 to 86 and noisy, see testing report
 
 ### Week 3 checklist
 
@@ -449,7 +450,7 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 
 - Data is stored in the browser's LocalStorage, so it is per-browser and not shared between users.
 - Roles are enforced in the interface only; secure multi-user workflows need the planned Node.js backend.
-- Lighthouse scores were not obtained (the tool could not run on the development machine); performance targets are unverified. See [`docs/testing.md`](docs/testing.md).
+- Mobile Lighthouse performance varies between runs on the development machine (53 to 86), so the above-90 target is only confirmed for desktop. See [`docs/testing.md`](docs/testing.md).
 - Colour contrast was improved but not formally measured; automated accessibility checks cover structure, names and roles (0 violations on 9 screens).
 - No real authentication: the user switcher is a demo role selector.
 - Exports are CSV and browser print / PDF; there is no server-side PDF generation.

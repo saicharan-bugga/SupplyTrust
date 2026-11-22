@@ -274,6 +274,7 @@ export function AppLayout() {
           <label className="flex items-center gap-2 text-sm text-slate-600">
             <span className="hidden xl:inline">Demo user</span>
             <select
+              aria-label="Demo user"
               value={currentUser.userId}
               onChange={(e) => setCurrentUserId(e.target.value)}
               className="max-w-[11rem] rounded-xl border-0 bg-slate-900/5 px-3 py-2 text-sm font-medium text-slate-800 outline-none transition hover:bg-slate-900/10 focus:ring-2 focus:ring-teal-500/40 sm:max-w-none"
