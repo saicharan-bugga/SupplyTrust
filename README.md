@@ -42,7 +42,7 @@ No login needed: pick a role from the top bar (Procurement Officer, Manager, Ven
 | **Cinematic, classic intro** | Four hand-built navy-and-gold intro sequences (curtains, seal, counter, spotlight); a different one every visit |
 | **Collapsible icon rail** | A slim icon-only sidebar that expands to full labels with one tap, with live alert badges |
 | **Role-aware by design** | Five personas, each with their own navigation and permissions; vendors only ever see their own orders |
-| **Built to be trusted** | 86 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
+| **Built to be trusted** | 88 automated tests, accessible status badges, keyboard shortcuts, reduced-motion support, responsive from phone to widescreen |
 
 ## Overview
 
@@ -100,6 +100,12 @@ Procurement officers often manage purchase orders, vendor communication, deliver
 |---|---|---|
 | <img src="docs/screenshots/week3-order-details.png" alt="Order details with progress tracker" /> | <img src="docs/screenshots/week3-receipts.png" alt="Goods receipt" /> | <img src="docs/screenshots/week3-inspection-details.png" alt="Inspection details" /> |
 
+### Vendor portal
+
+Vendors get their own page showing only their orders, delivery progress, quality feedback and a delivery-date update form.
+
+<img src="docs/screenshots/vendor-portal.png" alt="Vendor portal" width="700" />
+
 ### Profile
 
 <img src="docs/screenshots/profile.png" alt="Profile page" width="700" />
@@ -125,6 +131,8 @@ Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wi
 - Purchase order list with search, quick status chips, sortable columns, pagination and CSV export
 - Status badges that use an icon and text, not colour alone
 - Vendors see only their own orders
+- Vendor Portal (`/vendor-portal`, vendor role only): own orders with delivery progress, quality feedback, delivery-date updates, status chart, performance score and CSV / print export
+- Shared `AnalyticsChart` and `ExportMenu` components used by Reports and the Vendor Portal
 - Derived metrics (order value, delay, outstanding quantity, rejection rate) calculated from records
 - LocalStorage persistence with a one-click reset to sample data
 - Reusable components: `AppLayout`, `DashboardCard`, `PurchaseOrderTable`, `OrderStatusBadge`, `SearchFilterBar`, `VendorSelector`, `OrderTimeline`, `ConfirmDialog`, `NotificationToast`
@@ -339,6 +347,7 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Phone, tablet and laptop layouts checked; no horizontal page scroll at 390 px (grids fixed to single column)
 - [x] Accessibility: axe-core suite on 9 screens, 0 violations; low-contrast text raised
 - [x] **82 tests passing**, 88% line coverage of the documented scope
+- [x] Vendor Portal added afterwards; suite is now **88 tests passing**
 - [x] Deployed: https://saicharan-bugga.github.io/SupplyTrust/
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
