@@ -30,6 +30,7 @@ const ICONS: Record<string, LucideIcon> = {
   '/': LayoutDashboard,
   '/orders': ClipboardList,
   '/vendors': Store,
+  '/vendor-portal': Store,
   '/receipts': PackageCheck,
   '/inspections': ShieldCheck,
   '/approvals': CheckCheck,

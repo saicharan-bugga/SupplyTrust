@@ -33,6 +33,7 @@ const ALL: Role[] = ['procurement_officer', 'procurement_manager', 'vendor', 'qu
 export const NAV_ITEMS: NavItem[] = [
   { to: '/', label: 'Dashboard', roles: ALL },
   { to: '/orders', label: 'Purchase Orders', roles: ALL },
+  { to: '/vendor-portal', label: 'Vendor Portal', roles: ['vendor'] },
   { to: '/vendors', label: 'Vendors', roles: ['procurement_officer', 'procurement_manager'] },
   { to: '/receipts', label: 'Goods Receipt', roles: ['warehouse_receiver', 'procurement_officer'] },
   { to: '/inspections', label: 'Quality Inspection', roles: ['quality_inspector', 'procurement_officer', 'procurement_manager'] },

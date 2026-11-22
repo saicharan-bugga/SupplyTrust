@@ -1,14 +1,11 @@
-import { ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Tooltip } from 'chart.js'
-import { Download, Printer } from 'lucide-react'
-import { Bar, Doughnut } from 'react-chartjs-2'
-import { PageHeader, Unauthorized, btnGhost } from '../components/ui'
+import { AnalyticsChart } from '../components/AnalyticsChart'
+import { ExportMenu } from '../components/ExportMenu'
+import { PageHeader, Unauthorized } from '../components/ui'
 import { formatMoney, rejectionRate } from '../lib/derived'
 import { STATUS_COLORS, statusBreakdown, toCsv, vendorSpend } from '../lib/insights'
 import { can } from '../lib/permissions'
 import { defectBreakdown, vendorPerformance } from '../lib/workflow'
 import { useApp } from '../state/AppContext'
-
-ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
 const TEAL = '#1f4478'
 const AMBER = '#f59e0b'
@@ -38,22 +35,13 @@ export function ReportsPage() {
     notify('Vendor performance exported to CSV.')
   }
 
-  const chartOpts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' as const } } }
-
   return (
     <div className="space-y-6">
       <PageHeader
         title="Reports & analytics"
         subtitle="Live numbers calculated from your orders and inspections"
         actions={
-          <>
-            <button type="button" onClick={exportCsv} className={`${btnGhost} inline-flex items-center gap-2`}>
-              <Download size={16} aria-hidden /> Export CSV
-            </button>
-            <button type="button" onClick={() => window.print()} className={`${btnGhost} inline-flex items-center gap-2`}>
-              <Printer size={16} aria-hidden /> Print / PDF
-            </button>
-          </>
+          <ExportMenu options={[{ label: 'Download CSV', onSelect: exportCsv }, { label: 'Print / PDF', onSelect: () => window.print() }]} />
         }
       />
 
@@ -76,23 +64,25 @@ export function ReportsPage() {
           <h2 id="c1" className="mb-3 text-lg font-semibold">
             Orders by status
           </h2>
-          <div className="h-72" role="img" aria-label={`Orders by status: ${breakdown.map((b) => `${b.status} ${b.count}`).join(', ')}`}>
-            <Doughnut
-              options={chartOpts}
-              data={{ labels: breakdown.map((b) => b.status), datasets: [{ data: breakdown.map((b) => b.count), backgroundColor: breakdown.map((b) => STATUS_COLORS[b.status]), borderWidth: 2 }] }}
-            />
-          </div>
+          <AnalyticsChart
+            kind="doughnut"
+            labels={breakdown.map((b) => b.status)}
+            values={breakdown.map((b) => b.count)}
+            colors={breakdown.map((b) => STATUS_COLORS[b.status])}
+            summary={`Orders by status: ${breakdown.map((b) => `${b.status} ${b.count}`).join(', ')}`}
+          />
         </section>
         <section className="st-card p-5" aria-labelledby="c2">
           <h2 id="c2" className="mb-3 text-lg font-semibold">
             Spend by vendor (INR)
           </h2>
-          <div className="h-72" role="img" aria-label={`Spend by vendor: ${spend.map((s) => `${s.name} ${formatMoney(s.value)}`).join(', ')}`}>
-            <Bar
-              options={{ ...chartOpts, plugins: { legend: { display: false } } }}
-              data={{ labels: spend.map((s) => s.name), datasets: [{ data: spend.map((s) => s.value), backgroundColor: TEAL, borderRadius: 8 }] }}
-            />
-          </div>
+          <AnalyticsChart
+            kind="bar"
+            labels={spend.map((v) => v.name)}
+            values={spend.map((v) => v.value)}
+            colors={TEAL}
+            summary={`Spend by vendor: ${spend.map((v) => `${v.name} ${formatMoney(v.value)}`).join(', ')}`}
+          />
         </section>
         <section className="st-card p-5 lg:col-span-2" aria-labelledby="c3">
           <h2 id="c3" className="mb-3 text-lg font-semibold">
@@ -101,12 +91,14 @@ export function ReportsPage() {
           {defects.length === 0 ? (
             <p className="text-sm text-slate-600">No defects recorded yet.</p>
           ) : (
-            <div className="h-64" role="img" aria-label={`Defects: ${defects.map((d) => `${d.category} ${d.quantity}`).join(', ')}`}>
-              <Bar
-                options={{ ...chartOpts, indexAxis: 'y' as const, plugins: { legend: { display: false } } }}
-                data={{ labels: defects.map((d) => d.category), datasets: [{ data: defects.map((d) => d.quantity), backgroundColor: AMBER, borderRadius: 8 }] }}
-              />
-            </div>
+            <AnalyticsChart
+              kind="horizontalBar"
+              heightClass="h-64"
+              labels={defects.map((d) => d.category)}
+              values={defects.map((d) => d.quantity)}
+              colors={AMBER}
+              summary={`Defects: ${defects.map((d) => `${d.category} ${d.quantity}`).join(', ')}`}
+            />
           )}
         </section>
       </div>

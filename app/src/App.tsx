@@ -14,6 +14,7 @@ import { ProfilePage } from './pages/ProfilePage'
 import { ReceiptsPage } from './pages/ReceiptsPage'
 import { ReportsPage } from './pages/ReportsPage'
 import { SettingsPage } from './pages/SettingsPage'
+import { VendorPortalPage } from './pages/VendorPortalPage'
 import { VendorsPage } from './pages/VendorsPage'
 import { AppProvider, useApp } from './state/AppContext'
 
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="orders/:orderId" element={<OrderDetailPage />} />
             <Route path="orders/:orderId/edit" element={<OrderFormPage />} />
             <Route path="vendors" element={<VendorsPage />} />
+            <Route path="vendor-portal" element={<VendorPortalPage />} />
             <Route path="receipts" element={<ReceiptsPage />} />
             <Route path="inspections" element={<InspectionsPage />} />
             <Route path="inspections/:inspectionId" element={<InspectionDetailPage />} />
