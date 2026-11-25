@@ -1,5 +1,5 @@
 import { AlertTriangle, ArrowRight, CalendarClock, ClipboardList, Hourglass, Plus, ShieldCheck, ShieldX, SlidersHorizontal, Sparkles } from 'lucide-react'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { DashboardCustomizer } from '../components/DashboardCustomizer'
 import { WIDGETS, loadLayout, moveWidget, saveLayout, toggleWidget, visibleWidgets, DEFAULT_LAYOUT, type WidgetId } from '../lib/dashboardLayout'
@@ -56,7 +56,12 @@ export function DashboardPage() {
   const { data, visibleOrders, currentUser } = useApp()
   const [layout, setLayout] = useState(() => loadLayout(currentUser.userId))
   const [customizing, setCustomizing] = useState(false)
-  useEffect(() => setLayout(loadLayout(currentUser.userId)), [currentUser.userId])
+  // Switching demo user loads that user's saved layout (adjusting state during render, no effect needed).
+  const [layoutUser, setLayoutUser] = useState(currentUser.userId)
+  if (layoutUser !== currentUser.userId) {
+    setLayoutUser(currentUser.userId)
+    setLayout(loadLayout(currentUser.userId))
+  }
   const update = (next: typeof layout) => {
     setLayout(next)
     saveLayout(currentUser.userId, next)
