@@ -307,6 +307,29 @@ SupplyTrust/
 
 See [`docs/architecture.md`](docs/architecture.md) for layers, data model, technology versions and the sample dataset.
 
+## Optional backend (Express API)
+
+The hosted demo runs entirely in the browser. For shared data and server-side rule enforcement, run the API in [`server/`](server/):
+
+```bash
+cd server && npm install && npm start        # API on http://localhost:4000
+cd app && VITE_API_URL=http://localhost:4000 npm run dev
+```
+
+On first load the app seeds the empty server with the sample data. After that the server is the source of truth: every change is checked by `server/src/rules.js` before it is saved, and a rejected change is rolled back in the UI with the server's message.
+
+| Enforced on the server | PRD rule |
+|---|---|
+| An order needs at least one item; quantities are positive whole numbers, unit price is not negative | 1, 2 |
+| Accepted + rejected must equal inspected | 4 |
+| Only authorised roles approve, reject or request reinspection, under their own user | 5 |
+| Earlier inspection records and decisions are preserved; history and audit are append-only | 7, 9 |
+| Cancelled orders accept no updates or receipts | 8 |
+| Role permission matrix and the allowed status-transition map | 10 |
+| Vendors see and change only their own orders (delivery date only) | persona rules |
+
+REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /api/orders`, `GET /api/orders/:id`, `/api/vendors`, `/api/receipts`, `/api/inspections`, `/api/approvals`, `/api/audit`. Requests carry the selected demo user in an `x-user-id` header. `cd server && npm test` runs 9 API tests; the app's client for it has 3 more.
+
 ## 4-week plan
 
 > **Four-week priority:** deliver a complete purchase order-to-inspection-decision workflow before adding PWA features, animations or dashboard customisation.
@@ -317,8 +340,8 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 | **2** | Purchase order CRUD, vendor selection, search, status filters, forms, LocalStorage / JSON persistence | Working purchase order and vendor management workflows | **Complete** |
 | **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | **Complete** |
 | **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | **Complete** |
-| Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | Optional |
-| Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | Optional |
+| Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | **Complete** (Express API with server-side rules, see below) |
+| Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | PWA and analytics done; dashboard customisation not built |
 
 ### Week 1 checklist
 
@@ -348,11 +371,11 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 - [x] Phone, tablet and laptop layouts checked; no horizontal page scroll at 390 px (grids fixed to single column)
 - [x] Accessibility: axe-core suite on 9 screens, 0 violations; low-contrast text raised
 - [x] **82 tests passing**, 88% line coverage of the documented scope
-- [x] Vendor Portal added afterwards; suite is now **88 tests passing**
+- [x] Vendor Portal added afterwards; suite is now **91 app tests plus 9 server API tests passing**
 - [x] Deployed: https://saicharan-bugga.github.io/SupplyTrust/
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
-- [x] Lighthouse measured on the live site: desktop 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO); mobile performance 53 to 86 and noisy, see testing report
+- [x] Lighthouse measured on the live site: desktop 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO); mobile performance 89 to 93 after making fonts non-blocking (FCP about 1.0 s), see testing report
 
 ### Week 3 checklist
 
@@ -449,8 +472,9 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 ## Known limitations
 
 - Data is stored in the browser's LocalStorage, so it is per-browser and not shared between users.
-- Roles are enforced in the interface only; secure multi-user workflows need the planned Node.js backend.
-- Mobile Lighthouse performance varies between runs on the development machine (53 to 86), so the above-90 target is only confirmed for desktop. See [`docs/testing.md`](docs/testing.md).
+- The hosted demo enforces roles in the interface only. Run the optional Express API in [`server/`](server/) (see below) for server-side enforcement and shared data.
+- Mobile Lighthouse performance is 89 to 93 across three runs (simulated 4x CPU, slow 4G); it passes the 90 target in some runs and not others. Desktop is 99. See [`docs/testing.md`](docs/testing.md).
+- The backend stores data in a JSON file, not a database, and identifies users by the demo user id header rather than real login.
 - Colour contrast was improved but not formally measured; automated accessibility checks cover structure, names and roles (0 violations on 9 screens).
 - No real authentication: the user switcher is a demo role selector.
 - Exports are CSV and browser print / PDF; there is no server-side PDF generation.

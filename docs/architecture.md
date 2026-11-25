@@ -93,5 +93,9 @@ Seven demo users and four vendors (one inactive). Eight purchase orders cover ev
 ## Known limitations
 
 - Data lives in the browser's LocalStorage, so it is per-browser and not shared between users.
-- Roles are enforced in the interface only; real multi-user security needs the planned Node.js backend.
+- The hosted demo enforces roles in the interface only. The optional Express API in `server/` enforces them on the server (JSON-file storage, demo user header instead of real login).
 - The Week 2 to Week 4 screens are placeholders until built.
+
+## Optional backend
+
+`server/` is a small Express 5 app (`app.js` routes, `rules.js` workflow and permission checks, `store.js` atomic JSON-file persistence). The client (`app/src/lib/api.ts`, wired in `state/AppContext.tsx`) switches to it only when `VITE_API_URL` is set; otherwise it stays on LocalStorage. The server diffs each submitted document against the stored one per collection and rejects changes the user's role may not make (HTTP 403 with a message), which the UI shows as a toast before reverting to the server copy.

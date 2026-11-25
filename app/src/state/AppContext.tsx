@@ -1,5 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { sampleData } from '../data/sample'
+import { ApiError, apiEnabled, loadRemote, saveRemote } from '../lib/api'
 import type { AppData, PurchaseOrder, User } from '../types'
 
 const DATA_KEY = 'supplytrust.data.v2'
@@ -77,6 +78,40 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [userId])
 
   const currentUser = data.users.find((u) => u.userId === userId) ?? data.users[0]
+
+  // Optional backend sync (only when VITE_API_URL is set). The server is the authority:
+  // it enforces roles and workflow rules, and a rejected change is rolled back to the server copy.
+  const [syncing, setSyncing] = useState(apiEnabled)
+  const serverJson = useRef<string | null>(null)
+  const dataRef = useRef(data)
+  dataRef.current = data
+  const pull = useCallback(async (uid: string) => {
+    const remote = await loadRemote(uid, dataRef.current)
+    serverJson.current = JSON.stringify(remote)
+    setDataState(remote)
+  }, [])
+  useEffect(() => {
+    if (!apiEnabled) return
+    pull(currentUser.userId)
+      .catch(() => notify('Could not reach the server, working offline.', 'error'))
+      .finally(() => setSyncing(false))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser.userId])
+  useEffect(() => {
+    if (!apiEnabled || syncing) return
+    const json = JSON.stringify(data)
+    if (json === serverJson.current) return
+    saveRemote(currentUser.userId, data)
+      .then((saved) => {
+        serverJson.current = JSON.stringify(saved)
+        setDataState(saved)
+      })
+      .catch((e: unknown) => {
+        notify(e instanceof ApiError ? `Server rejected the change: ${e.message}` : 'Could not save to the server.', 'error')
+        pull(currentUser.userId).catch(() => undefined)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
   const visibleOrders = useMemo(
     () =>

@@ -4,3 +4,4 @@ dist
 .env
 coverage
 docs/daily-updates.md
+server/data
