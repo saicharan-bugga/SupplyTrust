@@ -349,7 +349,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 | **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | **Complete** |
 | **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | **Complete** |
 | Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | **Complete** (Express API with server-side rules, see below) |
-| Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | **Complete** (PWA, analytics, customisable dashboard; mobile performance 89 to 93) |
+| Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | **Complete** (PWA, analytics, customisable dashboard; mobile performance 78 to 94, median about 90) |
 
 ### Week 1 checklist
 
@@ -383,7 +383,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 - [x] Deployed on Vercel (https://app-sooty-five-62.vercel.app) and GitHub Pages (https://saicharan-bugga.github.io/SupplyTrust/)
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
-- [x] Lighthouse measured on the live site: desktop 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO); mobile performance 89 to 93 after making fonts non-blocking (FCP about 1.0 s), see testing report
+- [x] Lighthouse measured on the live site: desktop 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO); mobile FCP and LCP about 1.0 s after non-blocking fonts and a hero that no longer fades in from transparent; mobile performance score 78 to 94 across four runs (it swings with total blocking time on a loaded laptop), see testing report
 
 ### Week 3 checklist
 
@@ -481,7 +481,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 
 - Data is stored in the browser's LocalStorage, so it is per-browser and not shared between users.
 - The hosted demo enforces roles in the interface only. Run the optional Express API in [`server/`](server/) (see below) for server-side enforcement and shared data.
-- Mobile Lighthouse performance is 89 to 93 across three runs (simulated 4x CPU, slow 4G); it passes the 90 target in some runs and not others. Desktop is 99. See [`docs/testing.md`](docs/testing.md).
+- Mobile Lighthouse performance is 78 to 94 across four runs on the Vercel site (simulated 4x CPU, slow 4G): FCP and LCP meet the targets (about 1.0 s) but total blocking time varies run to run, so the above-90 score is reached in about half the runs. Desktop is 99. See [`docs/testing.md`](docs/testing.md).
 - The backend stores data in a JSON file, not a database, and identifies users by the demo user id header rather than real login.
 - Colour contrast was improved but not formally measured; automated accessibility checks cover structure, names and roles (0 violations on 9 screens).
 - No real authentication: the user switcher is a demo role selector.
