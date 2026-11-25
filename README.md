@@ -13,7 +13,9 @@
 
 <img src="docs/screenshots/dashboard-laptop.png" alt="SupplyTrust dashboard" width="900" />
 
-### [Open the live demo](https://saicharan-bugga.github.io/SupplyTrust/)
+### [Open the live demo](https://app-sooty-five-62.vercel.app)
+
+Also hosted on GitHub Pages: https://saicharan-bugga.github.io/SupplyTrust/
 
 No login needed: pick a role from the top bar (Procurement Officer, Manager, Vendor, Quality Inspector, Warehouse Receiver). Press **Ctrl + K** to jump anywhere.
 
@@ -376,7 +378,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 - [x] Accessibility: axe-core suite on 9 screens, 0 violations; low-contrast text raised
 - [x] **82 tests passing**, 88% line coverage of the documented scope
 - [x] Vendor Portal added afterwards; suite is now **98 app tests plus 9 server API tests passing**
-- [x] Deployed: https://saicharan-bugga.github.io/SupplyTrust/
+- [x] Deployed on Vercel (https://app-sooty-five-62.vercel.app) and GitHub Pages (https://saicharan-bugga.github.io/SupplyTrust/)
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
 - [x] Lighthouse measured on the live site: desktop 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO); mobile performance 89 to 93 after making fonts non-blocking (FCP about 1.0 s), see testing report
