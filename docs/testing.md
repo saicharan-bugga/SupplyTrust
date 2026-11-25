@@ -8,7 +8,7 @@ All numbers below were measured on the development machine (Windows 11, Microsof
 |---|---|
 | Runner | Vitest 5 + React Testing Library, jsdom |
 | Test files | 13 app files, plus 1 server API file |
-| Tests | **98 app tests passing** (Vitest) and **9 server API tests passing** (`node --test` in `server/`) |
+| Tests | **101 app tests passing** (Vitest) and **9 server API tests passing** (`node --test` in `server/`) |
 | Coverage scope (denominator) | `src/components/**` and `src/lib/**` (reusable components and pure domain logic); pages are covered by the accessibility suite and manual runs |
 | Line coverage of that scope | **86.5% lines, 82.6% statements** as of 2026-11-25 (above the 80% target; `src/lib` 98.8%, `src/components` 78.0%) |
 

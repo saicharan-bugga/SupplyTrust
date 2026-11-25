@@ -108,6 +108,12 @@ Vendors get their own page showing only their orders, delivery progress, quality
 
 <img src="docs/screenshots/vendor-portal.png" alt="Vendor portal" width="700" />
 
+### My Dashboard
+
+Every user has a personal workspace (second item in the sidebar): a welcome banner, role-specific tasks, personal numbers (orders I can see, orders I created, decisions I made, actions recorded), orders needing attention and my recent activity.
+
+<img src="docs/screenshots/my-dashboard.png" alt="My Dashboard page" width="700" />
+
 ### Profile
 
 <img src="docs/screenshots/profile.png" alt="Profile page" width="700" />
@@ -157,6 +163,7 @@ Low-fidelity wireframes for all 12 screens are in [`docs/wireframes.md`](docs/wi
 - Reports and analytics: charts (status, spend, defects), vendor performance scorecard, CSV export and print / PDF
 - Audit log of every status change, receipt, inspection, decision and date update, searchable and exportable
 - Command palette (Ctrl + K) to jump to any page, order or vendor; dark theme toggle
+- My Dashboard page (`/my-dashboard`): a personal workspace for every role with tasks, personal numbers, orders needing attention and recent activity
 - Profile page (click your avatar): basic details, what your role can do, your recent activity, editable display name, theme and demo-user switch
 - Unauthorised actions are blocked in both the UI and the logic layer
 
@@ -379,7 +386,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 - [x] Phone, tablet and laptop layouts checked; no horizontal page scroll at 390 px (grids fixed to single column)
 - [x] Accessibility: axe-core suite on 9 screens, 0 violations; low-contrast text raised
 - [x] **82 tests passing**, 88% line coverage of the documented scope
-- [x] Vendor Portal added afterwards; suite is now **98 app tests plus 9 server API tests passing**
+- [x] Vendor Portal added afterwards; suite is now **101 app tests plus 9 server API tests passing**
 - [x] Deployed on Vercel (https://app-sooty-five-62.vercel.app) and GitHub Pages (https://saicharan-bugga.github.io/SupplyTrust/)
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
