@@ -290,7 +290,7 @@ export function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <section className="st-hero st-rise p-6 sm:p-8">
+      <section className="st-hero p-6 sm:p-8">
         <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">

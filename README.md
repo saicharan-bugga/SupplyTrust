@@ -311,7 +311,9 @@ See [`docs/architecture.md`](docs/architecture.md) for layers, data model, techn
 
 ## Customisable dashboard
 
-The **Customise** button on the dashboard opens a panel to show or hide any of the nine widgets (tasks, key numbers, order pipeline, quality health, spend by vendor, upcoming deliveries, delayed orders, awaiting approval, recent activity) and move them up or down. It uses checkboxes and buttons, so it works by keyboard. The layout is saved per demo user in LocalStorage, repaired automatically if the saved data is invalid, and **Reset** restores the default. Logic is in `app/src/lib/dashboardLayout.ts` with 7 tests.
+![Customise dashboard panel](docs/screenshots/dashboard-customise.jpg)
+
+The **Customise** button on the dashboard opens a panel to show or hide any of the nine widgets (tasks, key numbers, order pipeline, quality health, spend by vendor, upcoming deliveries, delayed orders, awaiting approval, recent activity) and move them up or down. It uses checkboxes and buttons, so it works by keyboard. The layout is saved per demo user in LocalStorage, repaired automatically if the saved data is invalid, and **Reset** restores the default. Logic is in `app/src/lib/dashboardLayout.ts` with 7 tests. The hero banner no longer fades in from transparent, which cut mobile Lighthouse LCP from about 3.4 s to under 1 s.
 
 ## Optional backend (Express API)
 
@@ -334,7 +336,7 @@ On first load the app seeds the empty server with the sample data. After that th
 | Role permission matrix and the allowed status-transition map | 10 |
 | Vendors see and change only their own orders (delivery date only) | persona rules |
 
-REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /api/orders`, `GET /api/orders/:id`, `/api/vendors`, `/api/receipts`, `/api/inspections`, `/api/approvals`, `/api/audit`. Requests carry the selected demo user in an `x-user-id` header. `cd server && npm test` runs 9 API tests; the app's client for it has 3 more.
+REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /api/orders`, `GET /api/orders/:id`, `/api/vendors`, `/api/receipts`, `/api/inspections`, `/api/approvals`, `/api/audit`. Requests carry the selected demo user in an `x-user-id` header. `cd server && npm test` runs 9 API tests; the app's client for it has 3 more. Also checked by hand in a browser (2026-11-25): the app seeded an empty server, a profile rename was saved to the server's JSON file, and a vendor user saw only their own 3 orders.
 
 ## 4-week plan
 
