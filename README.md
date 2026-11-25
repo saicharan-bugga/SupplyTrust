@@ -307,6 +307,10 @@ SupplyTrust/
 
 See [`docs/architecture.md`](docs/architecture.md) for layers, data model, technology versions and the sample dataset.
 
+## Customisable dashboard
+
+The **Customise** button on the dashboard opens a panel to show or hide any of the nine widgets (tasks, key numbers, order pipeline, quality health, spend by vendor, upcoming deliveries, delayed orders, awaiting approval, recent activity) and move them up or down. It uses checkboxes and buttons, so it works by keyboard. The layout is saved per demo user in LocalStorage, repaired automatically if the saved data is invalid, and **Reset** restores the default. Logic is in `app/src/lib/dashboardLayout.ts` with 7 tests.
+
 ## Optional backend (Express API)
 
 The hosted demo runs entirely in the browser. For shared data and server-side rule enforcement, run the API in [`server/`](server/):
@@ -341,7 +345,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 | **3** | Goods receipt, quality inspection, approval / rejection | End-to-end procurement and inspection workflow, dashboard metrics, role-specific views | **Complete** |
 | **4** | Validation, responsive testing, component tests, documentation, deployment; measure Lighthouse performance and critical-path completion | MVP release, test results, README, demonstration | **Complete** |
 | Month 2 *(optional)* | Node.js REST API and database; audit history, notifications, CSV / PDF export | Persistent backend and enhanced procurement features | **Complete** (Express API with server-side rules, see below) |
-| Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | PWA and analytics done; dashboard customisation not built |
+| Month 3 *(optional)* | PWA offline read access, dashboard customisation, advanced analytics, further performance optimisation | Extended prototype with enhanced UX | **Complete** (PWA, analytics, customisable dashboard; mobile performance 89 to 93) |
 
 ### Week 1 checklist
 
@@ -371,7 +375,7 @@ REST endpoints: `GET /api/health`, `POST /api/seed`, `GET/PUT /api/data`, `GET /
 - [x] Phone, tablet and laptop layouts checked; no horizontal page scroll at 390 px (grids fixed to single column)
 - [x] Accessibility: axe-core suite on 9 screens, 0 violations; low-contrast text raised
 - [x] **82 tests passing**, 88% line coverage of the documented scope
-- [x] Vendor Portal added afterwards; suite is now **91 app tests plus 9 server API tests passing**
+- [x] Vendor Portal added afterwards; suite is now **98 app tests plus 9 server API tests passing**
 - [x] Deployed: https://saicharan-bugga.github.io/SupplyTrust/
 - [x] Testing report with measured numbers and honest gaps - [`docs/testing.md`](docs/testing.md)
 - [x] Demo walkthrough - [`docs/demo-script.md`](docs/demo-script.md)
