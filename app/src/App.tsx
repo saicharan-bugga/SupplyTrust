@@ -7,6 +7,7 @@ const AuditPage = lazy(() => import('./pages/AuditPage').then((m) => ({ default:
 import { DashboardPage } from './pages/DashboardPage'
 const InspectionDetailPage = lazy(() => import('./pages/InspectionDetailPage').then((m) => ({ default: m.InspectionDetailPage })))
 const InspectionsPage = lazy(() => import('./pages/InspectionsPage').then((m) => ({ default: m.InspectionsPage })))
+const MyDashboardPage = lazy(() => import('./pages/MyDashboardPage').then((m) => ({ default: m.MyDashboardPage })))
 const OrderDetailPage = lazy(() => import('./pages/OrderDetailPage').then((m) => ({ default: m.OrderDetailPage })))
 const OrderFormPage = lazy(() => import('./pages/OrderFormPage').then((m) => ({ default: m.OrderFormPage })))
 const OrdersPage = lazy(() => import('./pages/OrdersPage').then((m) => ({ default: m.OrdersPage })))
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="approvals" element={<ApprovalsPage />} />
             <Route path="reports" element={<ReportsPage />} />
             <Route path="audit" element={<AuditPage />} />
+            <Route path="my-dashboard" element={<MyDashboardPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="*" element={<PlaceholderPage title="Page not found" week={1} />} />

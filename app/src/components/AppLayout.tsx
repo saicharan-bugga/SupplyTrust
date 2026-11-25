@@ -9,6 +9,7 @@ import {
   ScrollText,
   Search,
   Settings,
+  UserRound,
   Sun,
   ShieldCheck,
   Store,
@@ -28,6 +29,7 @@ import { ToastRegion } from './NotificationToast'
 
 const ICONS: Record<string, LucideIcon> = {
   '/': LayoutDashboard,
+  '/my-dashboard': UserRound,
   '/orders': ClipboardList,
   '/vendors': Store,
   '/vendor-portal': Store,

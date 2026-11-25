@@ -32,6 +32,7 @@ const ALL: Role[] = ['procurement_officer', 'procurement_manager', 'vendor', 'qu
 
 export const NAV_ITEMS: NavItem[] = [
   { to: '/', label: 'Dashboard', roles: ALL },
+  { to: '/my-dashboard', label: 'My Dashboard', roles: ALL },
   { to: '/orders', label: 'Purchase Orders', roles: ALL },
   { to: '/vendor-portal', label: 'Vendor Portal', roles: ['vendor'] },
   { to: '/vendors', label: 'Vendors', roles: ['procurement_officer', 'procurement_manager'] },
